@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tag, Hash, FileText, Building2, ArrowRight, Sparkles, Search } from 'lucide-react';
-import leftIllustration from '../assets/search_identifier_3d_left.png';
+import fullBgImage from '../assets/search_identifiers_full_bg.png';
 
 export default function SearchTypesSection({ onExecuteSearch }) {
   const searchTypes = [
@@ -40,29 +40,25 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
   return (
     <section style={{
-      paddingTop: '96px',
-      paddingBottom: '108px',
-      background: 'linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%)',
-      borderBottom: '1px solid #e1ecf9',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      paddingTop: '100px',
+      paddingBottom: '116px',
+      background: `#ffffff url(${fullBgImage}) no-repeat left center`,
+      backgroundSize: 'contain',
+      borderBottom: '1px solid #e1ecf9'
     }}>
       
-      {/* Background Soft Ambient Light Elements */}
+      {/* Soft Ambient Blend Overlay */}
       <div style={{
         position: 'absolute',
-        top: '10%',
-        left: '2%',
-        width: '500px',
-        height: '500px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(225, 236, 249, 0.7) 0%, rgba(240, 246, 252, 0.3) 50%, transparent 75%)',
-        filter: 'blur(30px)',
+        inset: 0,
+        background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.95) 75%, #ffffff 100%)',
         pointerEvents: 'none',
-        zIndex: 0
+        zIndex: 1
       }} />
 
-      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
         
         {/* =========================================================================
             CENTERED SECTION HEADER
@@ -112,52 +108,24 @@ export default function SearchTypesSection({ onExecuteSearch }) {
         </div>
 
         {/* =========================================================================
-            MAIN SECTION: 3D GRAPHIC ON LEFT & 4 ENLARGED CARDS ON RIGHT
+            MAIN LAYOUT: SPACIOUS 3D BACKGROUND ON LEFT + 4 FROSTED CARDS ON RIGHT
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 440px) 1fr',
-          gap: '32px',
+          gridTemplateColumns: 'minmax(340px, 480px) 1fr',
+          gap: '36px',
           alignItems: 'center'
         }} className="search-identifiers-grid">
           
-          {/* =========================================================================
-              LEFT: 3D SEARCH & BROWSER ILLUSTRATION (SLIGHTLY ENLARGED)
-             ========================================================================= */}
-          <div style={{
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '10px'
-          }}>
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '460px',
-              animation: 'subtleSearchFloat 5s ease-in-out infinite'
-            }}>
-              <img
-                src={leftIllustration}
-                alt="Search Identifiers 3D Illustration"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  objectFit: 'contain',
-                  mixBlendMode: 'multiply',
-                  filter: 'drop-shadow(0 14px 32px rgba(15, 90, 162, 0.12))'
-                }}
-              />
-            </div>
+          {/* Left Space (Transparent area so 3D background artwork shines through) */}
+          <div style={{ minHeight: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="hide-mobile">
+            {/* Visual spacing holder */}
           </div>
 
-          {/* =========================================================================
-              RIGHT: 4 SLIGHTLY ENLARGED CARDS IN A ROW
-             ========================================================================= */}
+          {/* Right: 4 Frosted Glass Cards */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(215px, 1fr))',
             gap: '20px'
           }}>
             {searchTypes.map((item) => {
@@ -167,15 +135,17 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                   key={item.id}
                   onClick={() => onExecuteSearch && onExecuteSearch({ query: item.sample, searchType: item.id, searchMode: 'contains' })}
                   style={{
-                    background: '#ffffff',
-                    borderRadius: '22px',
-                    padding: '28px 22px',
-                    border: '1px solid #e1ecf9',
-                    boxShadow: '0 8px 24px rgba(15, 90, 162, 0.06)',
+                    background: 'rgba(255, 255, 255, 0.94)',
+                    backdropFilter: 'blur(16px)',
+                    WebkitBackdropFilter: 'blur(16px)',
+                    borderRadius: '24px',
+                    padding: '30px 24px',
+                    border: '1.5px solid #e1ecf9',
+                    boxShadow: '0 10px 30px rgba(15, 90, 162, 0.08)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    minHeight: '340px',
+                    minHeight: '350px',
                     cursor: 'pointer',
                     position: 'relative',
                     transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
@@ -183,16 +153,16 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
                     e.currentTarget.style.borderColor = '#0f5aa2';
-                    e.currentTarget.style.boxShadow = '0 18px 40px rgba(15, 90, 162, 0.15)';
+                    e.currentTarget.style.boxShadow = '0 20px 48px rgba(15, 90, 162, 0.18)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.borderColor = '#e1ecf9';
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(15, 90, 162, 0.06)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(15, 90, 162, 0.08)';
                   }}
                 >
                   <div>
-                    {/* Top Row: Icon + Step Badge */}
+                    {/* Top Row: Icon Box + Step Index Badge */}
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -208,7 +178,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         border: '1px solid #e1ecf9',
-                        boxShadow: '0 4px 10px rgba(15, 90, 162, 0.06)'
+                        boxShadow: '0 4px 12px rgba(15, 90, 162, 0.06)'
                       }}>
                         <IconComp size={24} color="#0f5aa2" />
                       </div>
@@ -228,7 +198,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
                     {/* Title */}
                     <h3 style={{
-                      fontSize: '1.16rem',
+                      fontSize: '1.2rem',
                       fontWeight: '800',
                       color: '#0d1d2e',
                       marginBottom: '10px',
@@ -239,7 +209,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
                     {/* Description */}
                     <p style={{
-                      fontSize: '0.88rem',
+                      fontSize: '0.9rem',
                       color: '#687d94',
                       lineHeight: 1.6,
                       margin: '0 0 24px 0'
@@ -248,7 +218,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                     </p>
                   </div>
 
-                  {/* Bottom Footer: Pill Example + Blue Arrow Button */}
+                  {/* Bottom Footer Action */}
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -256,13 +226,13 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                     gap: '10px',
                     marginTop: 'auto',
                     paddingTop: '16px',
-                    borderTop: '1px solid #f8fafc'
+                    borderTop: '1px solid rgba(225, 236, 249, 0.6)'
                   }}>
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',
-                      fontSize: '0.8rem',
+                      fontSize: '0.82rem',
                       fontWeight: '700',
                       color: '#0f5aa2',
                       background: '#f0f6fc',
@@ -304,11 +274,6 @@ export default function SearchTypesSection({ onExecuteSearch }) {
       </div>
 
       <style>{`
-        @keyframes subtleSearchFloat {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-7px); }
-          100% { transform: translateY(0px); }
-        }
         @media (max-width: 1040px) {
           .search-identifiers-grid {
             grid-template-columns: 1fr !important;

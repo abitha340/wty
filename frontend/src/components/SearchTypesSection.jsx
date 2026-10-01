@@ -42,9 +42,9 @@ export default function SearchTypesSection({ onExecuteSearch }) {
     <section style={{
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '92px',
-      paddingBottom: '100px',
-      background: 'linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%)',
+      paddingTop: '96px',
+      paddingBottom: '108px',
+      background: 'linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%)',
       borderBottom: '1px solid #e1ecf9'
     }}>
       
@@ -67,44 +67,94 @@ export default function SearchTypesSection({ onExecuteSearch }) {
         03
       </div>
 
-      <div className="container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 24px' }}>
+      {/* Large Ambient Fluid Aura Merging across Left and Center */}
+      <div style={{
+        position: 'absolute',
+        top: '15%',
+        left: '-5%',
+        width: '750px',
+        height: '650px',
+        background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.85) 0%, rgba(240, 246, 252, 0.5) 45%, transparent 75%)',
+        filter: 'blur(35px)',
+        pointerEvents: 'none',
+        zIndex: 0
+      }} />
+
+      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
         
         {/* =========================================================================
-            2-COLUMN GRID: LEFT = 3D TM DOCUMENT (MERGED) | RIGHT = HEADER & 4 CARDS
+            CENTERED SECTION HEADER
+           ========================================================================= */}
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 60px auto' }}>
+          
+          {/* Badge */}
+          <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '7px 18px',
+              borderRadius: '20px',
+              background: '#e1ecf9',
+              color: '#0f5aa2',
+              fontSize: '0.84rem',
+              fontWeight: '700'
+            }}>
+              <Sparkles size={15} color="#0f5aa2" />
+              <span>Search Identifiers</span>
+            </div>
+          </div>
+
+          {/* Main Heading with Blue Accent */}
+          <h2 style={{
+            fontSize: 'clamp(2.3rem, 4vw, 3.4rem)',
+            fontWeight: '900',
+            letterSpacing: '-0.035em',
+            color: '#0d1d2e',
+            marginBottom: '14px',
+            lineHeight: 1.15
+          }}>
+            What Can You <span style={{ color: '#0f5aa2' }}>Search?</span>
+          </h2>
+
+          {/* Description */}
+          <p style={{
+            fontSize: '1.1rem',
+            color: '#556980',
+            lineHeight: 1.65,
+            margin: 0,
+            maxWidth: '600px'
+          }}>
+            Search using the trademark information you already have across millions of structured registry records.
+          </p>
+        </div>
+
+        {/* =========================================================================
+            2-COLUMN GRID: ENLARGED 3D IMAGE ON LEFT (MERGED) | 4 CARDS ON RIGHT
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(340px, 480px) 1fr',
-          gap: '32px',
+          gridTemplateColumns: '1.15fr 1fr',
+          gap: '24px',
           alignItems: 'center'
         }} className="search-identifiers-swapped-grid">
           
           {/* =========================================================================
-              LEFT COLUMN: 3D TM DOCUMENT ILLUSTRATION WITH SOFT MERGING AURA
+              LEFT COLUMN: ENLARGED 3D TM DOCUMENT ILLUSTRATION WITH ORGANIC BLEND
              ========================================================================= */}
           <div style={{
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: '440px'
+            minHeight: '520px',
+            marginRight: '-20px',
+            zIndex: 1
           }}>
-            
-            {/* Ambient Radial Soft Glow extending toward the right */}
-            <div style={{
-              position: 'absolute',
-              inset: '-20px',
-              width: '130%',
-              background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.8) 0%, rgba(240, 246, 252, 0.4) 55%, transparent 75%)',
-              pointerEvents: 'none',
-              zIndex: 1
-            }} />
-
             <div style={{
               position: 'relative',
               width: '100%',
-              maxWidth: '540px',
-              zIndex: 2,
+              maxWidth: '660px',
               animation: 'subtleSearchFloat 5s ease-in-out infinite'
             }}>
               <img
@@ -116,63 +166,18 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                   display: 'block',
                   objectFit: 'contain',
                   mixBlendMode: 'multiply',
-                  filter: 'drop-shadow(0 14px 32px rgba(15, 90, 162, 0.12))'
+                  WebkitMaskImage: 'radial-gradient(ellipse 95% 95% at 50% 50%, black 72%, transparent 100%)',
+                  maskImage: 'radial-gradient(ellipse 95% 95% at 50% 50%, black 72%, transparent 100%)',
+                  filter: 'drop-shadow(0 18px 40px rgba(15, 90, 162, 0.14))'
                 }}
               />
             </div>
-
           </div>
 
           {/* =========================================================================
-              RIGHT COLUMN: HEADER & 4 STACKED CARDS WITH NUMBER BADGES
+              RIGHT COLUMN: 4 STACKED CARDS WITH NUMBER BADGES
              ========================================================================= */}
-          <div style={{ position: 'relative', zIndex: 3 }}>
-            
-            {/* Header Area */}
-            <div style={{ marginBottom: '36px' }}>
-              {/* Badge */}
-              <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '7px 18px',
-                  borderRadius: '20px',
-                  background: '#e1ecf9',
-                  color: '#0f5aa2',
-                  fontSize: '0.84rem',
-                  fontWeight: '700'
-                }}>
-                  <Sparkles size={15} color="#0f5aa2" />
-                  <span>Search Identifiers</span>
-                </div>
-              </div>
-
-              {/* Main Heading with Blue Accent */}
-              <h2 style={{
-                fontSize: 'clamp(2.3rem, 3.8vw, 3.2rem)',
-                fontWeight: '900',
-                letterSpacing: '-0.035em',
-                color: '#0d1d2e',
-                marginBottom: '14px',
-                lineHeight: 1.15
-              }}>
-                What Can You <span style={{ color: '#0f5aa2' }}>Search?</span>
-              </h2>
-
-              {/* Description */}
-              <p style={{
-                fontSize: '1.05rem',
-                color: '#556980',
-                lineHeight: 1.65,
-                margin: 0,
-                maxWidth: '580px'
-              }}>
-                Search using the trademark information you already have across millions of structured registry records.
-              </p>
-            </div>
-
-            {/* 4 Horizontal Stacked Cards with Left Number Badges */}
+          <div style={{ position: 'relative', zIndex: 2 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {searchTypes.map((item) => {
                 const IconComp = item.icon;
@@ -193,18 +198,18 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                     
                     {/* Left Circular Number Badge (01, 02, 03, 04) */}
                     <div style={{
-                      width: '38px',
-                      height: '38px',
+                      width: '40px',
+                      height: '40px',
                       borderRadius: '50%',
                       background: '#0f5aa2',
                       color: '#ffffff',
-                      fontSize: '0.82rem',
+                      fontSize: '0.84rem',
                       fontWeight: '800',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 3px 10px rgba(15, 90, 162, 0.25)'
+                      boxShadow: '0 4px 12px rgba(15, 90, 162, 0.28)'
                     }}>
                       {item.index}
                     </div>
@@ -213,11 +218,11 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                     <div style={{
                       flex: 1,
                       background: 'rgba(255, 255, 255, 0.96)',
-                      backdropFilter: 'blur(10px)',
+                      backdropFilter: 'blur(12px)',
                       borderRadius: '18px',
-                      padding: '16px 20px',
+                      padding: '18px 22px',
                       border: '1px solid #e1ecf9',
-                      boxShadow: '0 4px 18px rgba(15, 90, 162, 0.05)',
+                      boxShadow: '0 6px 20px rgba(15, 90, 162, 0.06)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -226,18 +231,18 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = '#0f5aa2';
-                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(15, 90, 162, 0.12)';
+                      e.currentTarget.style.boxShadow = '0 10px 28px rgba(15, 90, 162, 0.14)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor = '#e1ecf9';
-                      e.currentTarget.style.boxShadow = '0 4px 18px rgba(15, 90, 162, 0.05)';
+                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(15, 90, 162, 0.06)';
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                         
                         {/* Icon Box */}
                         <div style={{
-                          width: '44px',
-                          height: '44px',
+                          width: '46px',
+                          height: '46px',
                           borderRadius: '12px',
                           background: '#f0f6fc',
                           display: 'flex',
@@ -252,7 +257,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                         {/* Title & Description */}
                         <div>
                           <h3 style={{
-                            fontSize: '1.04rem',
+                            fontSize: '1.08rem',
                             fontWeight: '800',
                             color: '#0d1d2e',
                             marginBottom: '3px',
@@ -261,7 +266,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                             {item.title}
                           </h3>
                           <p style={{
-                            fontSize: '0.82rem',
+                            fontSize: '0.84rem',
                             color: '#687d94',
                             lineHeight: 1.5,
                             margin: 0
@@ -274,8 +279,8 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
                       {/* Right Circular Blue Arrow Button */}
                       <div style={{
-                        width: '34px',
-                        height: '34px',
+                        width: '36px',
+                        height: '36px',
                         borderRadius: '50%',
                         background: '#0f5aa2',
                         color: '#ffffff',
@@ -283,7 +288,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
-                        boxShadow: '0 2px 8px rgba(15, 90, 162, 0.25)'
+                        boxShadow: '0 3px 10px rgba(15, 90, 162, 0.28)'
                       }}>
                         <ArrowRight size={16} />
                       </div>
@@ -304,10 +309,10 @@ export default function SearchTypesSection({ onExecuteSearch }) {
       <style>{`
         @keyframes subtleSearchFloat {
           0% { transform: translateY(0px); }
-          50% { transform: translateY(-7px); }
+          50% { transform: translateY(-8px); }
           100% { transform: translateY(0px); }
         }
-        @media (max-width: 980px) {
+        @media (max-width: 1040px) {
           .search-identifiers-swapped-grid {
             grid-template-columns: 1fr !important;
           }

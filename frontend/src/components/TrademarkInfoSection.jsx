@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Hash, FileText, Building2, Layers, ShieldCheck, Globe, Calendar, Sparkles } from 'lucide-react';
+import { Tag, Hash, FileText, Building2, Layers, ShieldCheck, Globe, Calendar } from 'lucide-react';
 import docIllustration from '../assets/modern_tm_document.png';
 
 export default function TrademarkInfoSection() {
@@ -66,12 +66,12 @@ export default function TrademarkInfoSection() {
       <div className="container" style={{ maxWidth: '1320px', margin: '0 auto', padding: '0 24px' }}>
         
         {/* =========================================================================
-            2-COLUMN GRID: LEFT = HEADER & 2x4 ATTRIBUTES | RIGHT = 3D TM DOCUMENT
+            2-COLUMN GRID: LEFT = HEADER & 2x4 ATTRIBUTES | RIGHT = SEAMLESS 3D TM DOCUMENT
            ========================================================================= */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-          gap: '52px',
+          gap: '48px',
           alignItems: 'center'
         }}>
           
@@ -184,22 +184,34 @@ export default function TrademarkInfoSection() {
           </div>
 
           {/* =========================================================================
-              RIGHT COLUMN: 3D TM DOCUMENT ILLUSTRATION
+              RIGHT COLUMN: SEAMLESSLY BLENDED 3D TM DOCUMENT WITH SOFT AURA
              ========================================================================= */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            position: 'relative'
+            position: 'relative',
+            minHeight: '440px'
           }}>
+            
+            {/* Soft Ambient Radial Glow merging with the page */}
+            <div style={{
+              position: 'absolute',
+              width: '120%',
+              height: '120%',
+              background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.65) 0%, rgba(240, 246, 252, 0.3) 50%, rgba(255, 255, 255, 0) 75%)',
+              pointerEvents: 'none',
+              zIndex: 1
+            }} />
+
+            {/* Floating Document Container */}
             <div style={{
               width: '100%',
-              maxWidth: '560px',
+              maxWidth: '580px',
               position: 'relative',
-              transition: 'transform 0.3s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}>
+              zIndex: 2,
+              animation: 'subtleDocFloat 5s ease-in-out infinite'
+            }}>
               <img
                 src={docIllustration}
                 alt="Modern Trademark Document Illustration"
@@ -208,15 +220,26 @@ export default function TrademarkInfoSection() {
                   height: 'auto',
                   display: 'block',
                   objectFit: 'contain',
-                  filter: 'drop-shadow(0 16px 36px rgba(15, 90, 162, 0.12))'
+                  mixBlendMode: 'multiply',
+                  WebkitMaskImage: 'radial-gradient(ellipse 90% 90% at 50% 50%, black 75%, transparent 100%)',
+                  maskImage: 'radial-gradient(ellipse 90% 90% at 50% 50%, black 75%, transparent 100%)'
                 }}
               />
             </div>
+
           </div>
 
         </div>
 
       </div>
+
+      <style>{`
+        @keyframes subtleDocFloat {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
     </section>
   );
 }

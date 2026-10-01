@@ -1,6 +1,6 @@
 import React from 'react';
-import { Compass, BookOpen, ArrowRight, Globe, ShieldCheck, Search, FileText, Sparkles } from 'lucide-react';
-import heroGlobe from '../assets/hero_globe.jpg';
+import { Compass, BookOpen, ArrowRight, Sparkles } from 'lucide-react';
+import heroGlobe from '../assets/hero_globe.png';
 
 export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
   return (
@@ -9,7 +9,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
       overflow: 'hidden',
       background: '#ffffff',
       paddingTop: '64px',
-      paddingBottom: '88px',
+      paddingBottom: '80px',
       borderBottom: '1px solid #e1ecf9'
     }}>
       <div className="container" style={{
@@ -134,210 +134,35 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
         </div>
 
         {/* =========================================================================
-            RIGHT COLUMN: Realistic 3D Globe with 4 Floating Glass Cards
+            RIGHT COLUMN: The Exact hero_globe.png Visual Asset
            ========================================================================= */}
         <div style={{
           position: 'relative',
-          minHeight: '460px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          minHeight: '380px'
         }}>
-          
-          {/* Globe Background Image */}
           <div style={{
-            position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1
+            position: 'relative',
+            width: '100%',
+            maxWidth: '620px',
+            transition: 'transform 0.3s ease'
           }}>
             <img
               src={heroGlobe}
-              alt="Global Trademark Intelligence Coverage"
+              alt="Global Trademark Intelligence Visualization"
               style={{
                 width: '100%',
-                maxWidth: '560px',
                 height: 'auto',
-                objectFit: 'contain',
-                borderRadius: '24px',
-                mixBlendMode: 'multiply'
+                display: 'block',
+                objectFit: 'contain'
               }}
             />
           </div>
-
-          {/* =========================================================================
-              4 FLOATING GLASS CARDS (Exactly as in Reference Image)
-             ========================================================================= */}
-          
-          {/* Card 1: Global Coverage (Top-Right) */}
-          <div style={{
-            position: 'absolute',
-            top: '12px',
-            right: '18px',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(12px)',
-            borderRadius: '16px',
-            padding: '13px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
-            border: '1px solid #e1ecf9',
-            zIndex: 4,
-            minWidth: '185px',
-            animation: 'floating 4.5s ease-in-out infinite'
-          }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#f0f6fc',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Globe size={22} color="#0f5aa2" />
-            </div>
-            <div>
-              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
-                Global Coverage
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
-                190+ Countries
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2: Verified Data (Middle-Left) */}
-          <div style={{
-            position: 'absolute',
-            top: '155px',
-            left: '-6px',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(12px)',
-            borderRadius: '16px',
-            padding: '13px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
-            border: '1px solid #e1ecf9',
-            zIndex: 4,
-            minWidth: '180px',
-            animation: 'floating 5s ease-in-out infinite 0.6s'
-          }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#0f5aa2',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <ShieldCheck size={22} color="#ffffff" />
-            </div>
-            <div>
-              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
-                Verified Data
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
-                Trusted Sources
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3: Easy Search (Middle-Right) */}
-          <div style={{
-            position: 'absolute',
-            top: '190px',
-            right: '-10px',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(12px)',
-            borderRadius: '16px',
-            padding: '13px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
-            border: '1px solid #e1ecf9',
-            zIndex: 4,
-            minWidth: '185px',
-            animation: 'floating 4.8s ease-in-out infinite 1.2s'
-          }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#f0f6fc',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Search size={22} color="#0f5aa2" />
-            </div>
-            <div>
-              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
-                Easy Search
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
-                Find & Explore Fast
-              </div>
-            </div>
-          </div>
-
-          {/* Card 4: Track Applications (Bottom-Center/Right) */}
-          <div style={{
-            position: 'absolute',
-            bottom: '18px',
-            left: '120px',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(12px)',
-            borderRadius: '16px',
-            padding: '13px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
-            border: '1px solid #e1ecf9',
-            zIndex: 4,
-            minWidth: '205px',
-            animation: 'floating 4.2s ease-in-out infinite 1.8s'
-          }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#0f5aa2',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <FileText size={22} color="#ffffff" />
-            </div>
-            <div>
-              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
-                Track Applications
-              </div>
-              <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
-                Stay Updated
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
-
-      <style>{`
-        @keyframes floating {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-7px); }
-          100% { transform: translateY(0px); }
-        }
-      `}</style>
     </section>
   );
 }

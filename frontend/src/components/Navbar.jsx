@@ -1,207 +1,179 @@
-import React from 'react';
-import { Zap, Sun, Moon } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Menu, X, ArrowRight, ShieldCheck, BookOpen, Layers, HelpCircle, User } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, dashboardData, onOpenCreditsModal, theme, setTheme }) {
+export default function Navbar({ activeTab, setActiveTab, onOpenAuthModal }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navLinks = [
-    { id: 'landing', label: 'Overview' },
-    { id: 'search', label: 'Search Explorer' },
-    { id: 'dashboard', label: 'Developer Portal' },
-    { id: 'docs', label: 'Documentation' },
-    { id: 'contact', label: 'Contact Us' },
+    { id: 'landing', label: 'Home' },
+    { id: 'search', label: 'Trademark Search' },
+    { id: 'how-it-works', label: 'How It Works' },
+    { id: 'docs', label: 'Documentation' }
   ];
 
-  const themes = [
-    { id: 'dark', label: 'Dark', icon: Moon, title: 'Dark Mode' },
-    { id: 'light', label: 'Bright', icon: Sun, title: 'Bright Mode' },
-  ];
+  const handleNavClick = (id) => {
+    setActiveTab(id);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <header style={{
       position: 'sticky',
       top: 0,
-      zIndex: 50,
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      background: 'var(--header-bg)',
-      borderBottom: '1px solid var(--border-subtle)',
+      zIndex: 100,
+      background: 'rgba(255, 255, 255, 0.94)',
+      backdropFilter: 'blur(12px)',
+      WebkitBackdropFilter: 'blur(12px)',
+      borderBottom: '1px solid var(--border-subtle)'
     }}>
-      <div className="container" style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: '68px',
-      }}>
-        {/* Left: Clean Brand Logo */}
+      <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
+        
+        {/* Left: Brand Logo */}
         <div 
-          onClick={() => setActiveTab('landing')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            cursor: 'pointer',
-            userSelect: 'none'
-          }}
+          onClick={() => handleNavClick('landing')}
+          style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
         >
           <div style={{
-            width: '34px',
-            height: '34px',
-            borderRadius: '9px',
-            background: 'linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%)',
+            width: '38px',
+            height: '38px',
+            borderRadius: '10px',
+            background: 'linear-gradient(135deg, #0f5aa2 0%, #0b3b6d 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 2px 10px rgba(57, 174, 169, 0.35)',
-            border: '1px solid rgba(229, 239, 193, 0.3)'
+            color: '#ffffff',
+            fontWeight: '900',
+            fontSize: '1.25rem',
+            boxShadow: '0 3px 10px rgba(15, 90, 162, 0.25)'
           }}>
-            <span style={{ fontWeight: '800', fontSize: '1.15rem', color: '#FFFFFF' }}>W</span>
+            W
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '1.25rem', fontWeight: '800', letterSpacing: '-0.02em', color: 'var(--text-title)' }}>
+          <div>
+            <span style={{ fontSize: '1.4rem', fontWeight: '900', color: 'var(--brand-primary)', letterSpacing: '-0.03em' }}>
               Wyt
             </span>
-            <span style={{
-              fontSize: '0.65rem',
-              fontWeight: '700',
-              padding: '2px 6px',
-              borderRadius: '4px',
-              background: 'rgba(27, 122, 117, 0.15)',
-              color: 'var(--text-accent)',
-              letterSpacing: '0.05em'
-            }}>
-              API
+            <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-muted)', marginLeft: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Trademark
             </span>
           </div>
         </div>
 
-        {/* Center: Minimalist Text Navigation Links */}
-        <nav style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '26px'
-        }}>
-          {navLinks.map(link => {
+        {/* Center: Navigation Links (Desktop) */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '8px' }} className="desktop-only">
+          {navLinks.map((link) => {
             const isActive = activeTab === link.id;
             return (
               <button
                 key={link.id}
-                onClick={() => setActiveTab(link.id)}
+                onClick={() => handleNavClick(link.id)}
                 style={{
-                  background: 'none',
+                  background: isActive ? 'var(--brand-light)' : 'transparent',
+                  color: isActive ? 'var(--brand-primary)' : 'var(--text-main)',
+                  fontWeight: isActive ? '700' : '600',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
                   border: 'none',
-                  padding: '6px 0',
                   fontSize: '0.92rem',
-                  fontWeight: isActive ? '700' : '500',
-                  color: isActive ? 'var(--text-title)' : 'var(--text-muted)',
                   cursor: 'pointer',
-                  position: 'relative',
-                  outline: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px'
+                  transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive) e.currentTarget.style.color = 'var(--text-title)';
+                  if (!isActive) e.currentTarget.style.color = 'var(--brand-primary)';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive) e.currentTarget.style.color = 'var(--text-muted)';
+                  if (!isActive) e.currentTarget.style.color = 'var(--text-main)';
                 }}
               >
-                <span>{link.label}</span>
-                {isActive && (
-                  <span style={{
-                    position: 'absolute',
-                    bottom: '-4px',
-                    left: '0',
-                    right: '0',
-                    height: '2px',
-                    borderRadius: '2px',
-                    background: 'linear-gradient(90deg, var(--mint) 0%, var(--teal) 100%)',
-                    boxShadow: '0 0 8px var(--teal)'
-                  }}></span>
-                )}
+                {link.label}
               </button>
             );
           })}
         </nav>
 
-        {/* Right: Mode Switcher + Credits + CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          
-          {/* 2-Way Mode Switcher (Dark / Bright) */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            background: 'var(--input-bg)',
-            padding: '3px',
-            borderRadius: '9999px',
-            border: '1px solid var(--border-subtle)',
-            boxShadow: 'var(--shadow-sm)'
-          }}>
-            {themes.map(t => {
-              const Icon = t.icon;
-              const isCurrent = theme === t.id;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => setTheme(t.id)}
-                  title={t.title}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '5px',
-                    padding: '5px 12px',
-                    borderRadius: '9999px',
-                    fontSize: '0.78rem',
-                    fontWeight: isCurrent ? '700' : '500',
-                    background: isCurrent ? 'var(--teal)' : 'transparent',
-                    color: isCurrent ? '#FFFFFF' : 'var(--text-dim)',
-                    border: 'none',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <Icon size={13} />
-                  <span>{t.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Credits Counter Pill */}
-          <button 
-            onClick={onOpenCreditsModal}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 12px',
-              borderRadius: '9999px',
-              background: 'rgba(27, 122, 117, 0.1)',
-              border: '1px solid var(--border-subtle)',
-              color: 'var(--text-title)',
-              fontSize: '0.82rem',
-              fontWeight: '700',
-              cursor: 'pointer'
-            }}
-            title="Click to top up credits"
+        {/* Right: User Actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }} className="desktop-only">
+          <button
+            onClick={() => onOpenAuthModal('login')}
+            className="btn-outline"
           >
-            <Zap size={13} fill="var(--teal)" color="var(--teal)" />
-            <span>{(dashboardData?.credits_available ?? 7519).toLocaleString()}</span>
+            <User size={15} />
+            <span>Sign In</span>
           </button>
-
-          {/* Primary CTA */}
-          <button 
-            onClick={() => setActiveTab('dashboard')}
+          
+          <button
+            onClick={() => handleNavClick('search')}
             className="btn-primary"
-            style={{
-              padding: '8px 18px',
-              fontSize: '0.85rem',
-              fontWeight: '700'
-            }}
+            style={{ padding: '10px 20px', fontSize: '0.9rem' }}
           >
-            <span>Get API Key</span>
+            <span>Get Started</span>
+            <ArrowRight size={15} />
           </button>
         </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            display: 'none',
+            background: 'transparent',
+            border: 'none',
+            color: 'var(--text-title)',
+            cursor: 'pointer',
+            padding: '8px'
+          }}
+          className="mobile-toggle"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div style={{
+          background: '#ffffff',
+          borderBottom: '1px solid var(--border-subtle)',
+          padding: '20px 24px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px'
+        }}>
+          {navLinks.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => handleNavClick(link.id)}
+              style={{
+                textAlign: 'left',
+                padding: '10px 14px',
+                borderRadius: '8px',
+                background: activeTab === link.id ? 'var(--brand-light)' : 'transparent',
+                color: activeTab === link.id ? 'var(--brand-primary)' : 'var(--text-title)',
+                fontWeight: '700',
+                border: 'none',
+                fontSize: '1rem',
+                cursor: 'pointer'
+              }}
+            >
+              {link.label}
+            </button>
+          ))}
+          <div style={{ paddingTop: '12px', borderTop: '1px solid var(--border-subtle)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <button onClick={() => { setMobileMenuOpen(false); onOpenAuthModal('login'); }} className="btn-secondary" style={{ width: '100%' }}>
+              Sign In
+            </button>
+            <button onClick={() => handleNavClick('search')} className="btn-primary" style={{ width: '100%' }}>
+              Get Started
+            </button>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @media (max-width: 860px) {
+          .desktop-only { display: none !important; }
+          .mobile-toggle { display: block !important; }
+        }
+      `}</style>
     </header>
   );
 }

@@ -1,406 +1,227 @@
 import React, { useState } from 'react';
-import { 
-  Shield, ArrowRight, CheckCircle2, Sparkles, Database, 
-  Zap, Clock, Layers, Building2, Calendar, FileText, Check
-} from 'lucide-react';
+import { Search, ChevronDown, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 
-export default function HeroSection({ setActiveTab, onRunDemoSearch }) {
-  const [selectedBrand, setSelectedBrand] = useState('nike');
+export default function HeroSection({ onExecuteSearch }) {
+  const [query, setQuery] = useState('');
+  const [searchType, setSearchType] = useState('trademark'); // 'trademark' | 'app_number' | 'tm_number' | 'owner'
+  const [searchMode, setSearchMode] = useState('contains'); // 'exact' | 'startswith' | 'contains'
 
-  const trademarkCards = {
-    nike: {
-      mark: "NIKE",
-      appNo: "1948201",
-      tmNo: "TM-849201",
-      owner: "Nike Innovate C.V.",
-      classNo: 25,
-      classLabel: "Class 25 · Clothing, Footwear & Headgear",
-      status: "Registered",
-      country: "India & Global",
-      filingDate: "12 May 2018",
-      validUpto: "12 May 2028",
-      desc: "Footwear, athletic apparel, sports footwear, clothing and headgear for men, women and children.",
-      totalActive: 142
-    },
-    apple: {
-      mark: "APPLE",
-      appNo: "1092834",
-      tmNo: "TM-1092834",
-      owner: "Apple Inc.",
-      classNo: 9,
-      classLabel: "Class 9 · Hardware, Software & Electronics",
-      status: "Registered",
-      country: "India & Global",
-      filingDate: "18 Aug 2016",
-      validUpto: "18 Aug 2026",
-      desc: "Computers, computer hardware, computer software, telecommunications devices, wearable smart devices.",
-      totalActive: 289
-    },
-    tata: {
-      mark: "TATA",
-      appNo: "100293",
-      tmNo: "TM-100293",
-      owner: "Tata Sons Private Limited",
-      classNo: 12,
-      classLabel: "Class 12 · Vehicles & Automotive",
-      status: "Registered",
-      country: "India",
-      filingDate: "15 Jan 2014",
-      validUpto: "15 Jan 2034",
-      desc: "Motor vehicles, commercial vehicles, electric automobiles, passenger vehicles, and structural parts thereof.",
-      totalActive: 412
-    },
-    swiggy: {
-      mark: "SWIGGY",
-      appNo: "3049182",
-      tmNo: "TM-3049182",
-      owner: "Bundl Technologies Pvt Ltd (Swiggy)",
-      classNo: 39,
-      classLabel: "Class 39 · Delivery & Logistics Services",
-      status: "Registered",
-      country: "India",
-      filingDate: "04 Nov 2017",
-      validUpto: "04 Nov 2027",
-      desc: "Transport, packaging and storage of goods, rapid food ordering and hyper-local doorstep delivery services.",
-      totalActive: 86
-    }
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    onExecuteSearch({
+      query: query.trim() || 'NIKE',
+      searchType,
+      searchMode
+    });
   };
 
-  const current = trademarkCards[selectedBrand];
+  const searchTypeLabels = {
+    trademark: "Trademark Name",
+    app_number: "Application Number",
+    tm_number: "Trademark Number",
+    owner: "Owner / Proprietor"
+  };
 
   return (
     <section style={{
       position: 'relative',
-      paddingTop: '60px',
+      paddingTop: '64px',
       paddingBottom: '80px',
-      borderBottom: '1px solid var(--border-subtle)',
-      overflow: 'hidden'
+      background: 'linear-gradient(180deg, var(--brand-tint) 0%, var(--bg-page) 100%)',
+      borderBottom: '1px solid var(--border-subtle)'
     }}>
-      {/* Ambient background glows */}
-      <div style={{
-        position: 'absolute',
-        top: '-10%',
-        left: '20%',
-        width: '500px',
-        height: '350px',
-        background: 'radial-gradient(circle, rgba(57, 174, 169, 0.14) 0%, rgba(162, 213, 171, 0.05) 50%, transparent 70%)',
-        pointerEvents: 'none',
-        filter: 'blur(50px)'
-      }}></div>
-
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+      <div className="container" style={{ textAlign: 'center', maxWidth: '860px', margin: '0 auto' }}>
         
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1.15fr 1fr',
-          gap: '48px',
-          alignItems: 'center'
+        {/* Top Badge */}
+        <div style={{ display: 'inline-flex', marginBottom: '18px' }}>
+          <div className="badge badge-blue">
+            <Sparkles size={14} />
+            <span>Official Trademark Search Platform</span>
+          </div>
+        </div>
+
+        {/* Main Heading */}
+        <h1 style={{
+          fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
+          fontWeight: '900',
+          letterSpacing: '-0.03em',
+          marginBottom: '18px',
+          color: 'var(--text-title)'
         }}>
-          
-          {/* ================= LEFT COLUMN ================= */}
-          <div>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '9999px',
-              background: 'rgba(162, 213, 171, 0.15)',
-              border: '1px solid rgba(162, 213, 171, 0.4)',
-              marginBottom: '20px'
-            }}>
-              <Sparkles size={15} color="var(--teal)" />
-              <span style={{ fontSize: '0.82rem', fontWeight: '800', color: 'var(--teal)', letterSpacing: '0.04em' }}>
-                THE TRADEMARK DATA LAYER FOR APPLICATIONS
+          Search Trademark Information Easily
+        </h1>
+
+        {/* Supporting Text */}
+        <p style={{
+          fontSize: '1.15rem',
+          color: 'var(--text-muted)',
+          lineHeight: 1.65,
+          marginBottom: '40px',
+          maxWidth: '720px',
+          margin: '0 auto 40px auto'
+        }}>
+          Find trademark information from millions of structured trademark records. Search by trademark name, application number, trademark number, owner, class, status, or country.
+        </p>
+
+        {/* =========================================================================
+            LARGE MAIN SEARCH COMPONENT
+           ========================================================================= */}
+        <div style={{
+          background: '#ffffff',
+          borderRadius: '20px',
+          padding: '32px',
+          boxShadow: 'var(--shadow-lg)',
+          border: '1px solid var(--border-subtle)',
+          textAlign: 'left',
+          marginBottom: '20px'
+        }}>
+          <form onSubmit={handleSearchSubmit}>
+            
+            {/* Search Type Selector Tabs */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.84rem', fontWeight: '700', color: 'var(--text-muted)' }}>
+                Search by:
               </span>
-            </div>
-
-            <h1 style={{
-              fontSize: 'clamp(2.4rem, 4.2vw, 3.8rem)',
-              fontWeight: '800',
-              lineHeight: 1.15,
-              letterSpacing: '-0.03em',
-              marginBottom: '20px',
-              color: 'var(--text-title)'
-            }}>
-              Trademark Data. <br />
-              <span className="gradient-text-teal">Structured & Search-Ready.</span>
-            </h1>
-
-            <p style={{
-              fontSize: '1.12rem',
-              color: 'var(--text-muted)',
-              lineHeight: 1.65,
-              marginBottom: '32px',
-              maxWidth: '540px'
-            }}>
-              Wyt gives your product instant access to search, verify, and monitor structured trademark records across <strong style={{ color: 'var(--text-title)' }}>20+ Lakh official catalog entries</strong> with sub-15ms execution.
-            </p>
-
-            {/* Key Assurance Bullets */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '14px',
-              marginBottom: '36px',
-              maxWidth: '520px'
-            }}>
-              {[
-                { title: "20L+ Indexed Records", desc: "India & global registries" },
-                { title: "3 Search Modes", desc: "Exact, StartsWith, Contains" },
-                { title: "< 15ms Latency", desc: "High-speed indexed queries" },
-                { title: "Air-Gapped Cloud", desc: "Zero database credentials exposed" },
-              ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <div style={{
-                    marginTop: '2px',
-                    width: '18px',
-                    height: '18px',
-                    borderRadius: '50%',
-                    background: 'rgba(57, 174, 169, 0.2)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <CheckCircle2 size={13} color="var(--teal)" />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--text-title)' }}>{item.title}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>{item.desc}</div>
-                  </div>
-                </div>
+              {Object.keys(searchTypeLabels).map((typeKey) => (
+                <button
+                  key={typeKey}
+                  type="button"
+                  onClick={() => setSearchType(typeKey)}
+                  style={{
+                    padding: '6px 14px',
+                    borderRadius: '8px',
+                    fontSize: '0.82rem',
+                    fontWeight: '700',
+                    background: searchType === typeKey ? 'var(--brand-light)' : 'var(--bg-surface)',
+                    color: searchType === typeKey ? 'var(--brand-primary)' : 'var(--text-main)',
+                    border: searchType === typeKey ? '1px solid var(--brand-primary)' : '1px solid var(--border-subtle)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {searchTypeLabels[typeKey]}
+                </button>
               ))}
             </div>
 
-            {/* CTA Buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-              <button 
-                onClick={() => setActiveTab('search')}
-                className="btn-primary"
-                style={{ padding: '14px 28px', fontSize: '0.95rem' }}
-              >
-                <span>Explore Live Dataset</span>
-                <ArrowRight size={17} />
-              </button>
-              <button 
-                onClick={() => setActiveTab('dashboard')}
-                className="btn-secondary"
-                style={{ padding: '14px 24px', fontSize: '0.95rem' }}
-              >
-                <Zap size={16} />
-                <span>Developer Portal</span>
-              </button>
-              <button 
-                onClick={() => setActiveTab('contact')}
-                className="btn-outline-slate"
-                style={{ padding: '14px 22px', fontSize: '0.95rem' }}
-              >
-                <span>Contact Team</span>
-              </button>
-            </div>
-          </div>
-
-          {/* ================= RIGHT COLUMN: USER-FRIENDLY TRADEMARK SHOWCASE ================= */}
-          <div style={{ position: 'relative' }}>
-            
-            {/* Top Live Sync Pill */}
-            <div className="glass-panel float-card" style={{
-              position: 'absolute',
-              top: '-18px',
-              right: '12px',
-              zIndex: 10,
-              padding: '8px 16px',
-              borderRadius: '9999px',
-              border: '1px solid var(--border-focus)',
-              background: 'var(--bg-card)',
+            {/* Main Search Input Bar */}
+            <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
-              boxShadow: 'var(--shadow-md)'
+              background: '#ffffff',
+              border: '2px solid var(--brand-primary)',
+              borderRadius: '12px',
+              padding: '6px 8px 6px 18px',
+              marginBottom: '20px',
+              boxShadow: '0 4px 12px rgba(15, 90, 162, 0.1)'
             }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 8px #10B981' }}></span>
-              <span style={{ fontSize: '0.78rem', fontWeight: '800', color: 'var(--text-title)' }}>
-                20L+ Records Synchronized
-              </span>
-            </div>
-
-            {/* Main Interactive Trademark Profile Card */}
-            <div className="glass-panel" style={{
-              padding: '32px 28px',
-              borderRadius: '24px',
-              border: '1px solid var(--border-focus)',
-              background: 'var(--bg-surface)',
-              boxShadow: 'var(--shadow-md)',
-              position: 'relative'
-            }}>
-              
-              {/* Brand Switcher Pills */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', flexWrap: 'wrap', gap: '8px' }}>
-                <span style={{ fontSize: '0.78rem', fontWeight: '800', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  Live Preview:
-                </span>
-                <div style={{ display: 'flex', gap: '6px' }}>
-                  {Object.keys(trademarkCards).map(key => (
-                    <button
-                      key={key}
-                      onClick={() => setSelectedBrand(key)}
-                      style={{
-                        padding: '4px 12px',
-                        borderRadius: '9999px',
-                        fontSize: '0.76rem',
-                        fontWeight: '800',
-                        background: selectedBrand === key ? 'var(--teal)' : 'var(--bg-card)',
-                        color: selectedBrand === key ? '#FFFFFF' : 'var(--text-muted)',
-                        border: selectedBrand === key ? '1px solid var(--teal)' : '1px solid var(--border-subtle)',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease'
-                      }}
-                    >
-                      {trademarkCards[key].mark}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Verified Trademark Header */}
-              <div style={{
-                background: 'var(--bg-card)',
-                padding: '20px',
-                borderRadius: '16px',
-                border: '1px solid var(--border-subtle)',
-                marginBottom: '20px'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <h3 style={{ fontSize: '1.8rem', fontWeight: '900', color: 'var(--text-title)', letterSpacing: '-0.02em', margin: 0 }}>
-                      {current.mark}
-                    </h3>
-                    <span style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      padding: '3px 10px',
-                      borderRadius: '9999px',
-                      background: 'rgba(16, 185, 129, 0.15)',
-                      color: '#10B981',
-                      fontSize: '0.74rem',
-                      fontWeight: '800',
-                      border: '1px solid rgba(16, 185, 129, 0.3)'
-                    }}>
-                      <Check size={12} strokeWidth={3} />
-                      <span>{current.status}</span>
-                    </span>
-                  </div>
-                  
-                  <span style={{ fontSize: '0.78rem', fontFamily: 'JetBrains Mono', color: 'var(--text-dim)', background: 'var(--bg-surface)', padding: '3px 8px', borderRadius: '6px' }}>
-                    App #{current.appNo}
-                  </span>
-                </div>
-
-                <div style={{ fontSize: '0.84rem', fontWeight: '700', color: 'var(--teal)', marginBottom: '8px' }}>
-                  {current.classLabel}
-                </div>
-
-                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5, margin: 0 }}>
-                  {current.desc}
-                </p>
-              </div>
-
-              {/* 4 Structured Trademark Attributes */}
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '12px',
-                marginBottom: '22px'
-              }}>
-                <div style={{ padding: '12px 14px', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '2px', textTransform: 'uppercase', fontWeight: '700' }}>
-                    <Building2 size={13} color="var(--teal)" />
-                    <span>Proprietor / Owner</span>
-                  </div>
-                  <div style={{ fontSize: '0.86rem', fontWeight: '800', color: 'var(--text-title)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {current.owner}
-                  </div>
-                </div>
-
-                <div style={{ padding: '12px 14px', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '2px', textTransform: 'uppercase', fontWeight: '700' }}>
-                    <Layers size={13} color="var(--mint)" />
-                    <span>Jurisdiction & Scope</span>
-                  </div>
-                  <div style={{ fontSize: '0.86rem', fontWeight: '800', color: 'var(--text-title)' }}>
-                    {current.country}
-                  </div>
-                </div>
-
-                <div style={{ padding: '12px 14px', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '2px', textTransform: 'uppercase', fontWeight: '700' }}>
-                    <Calendar size={13} color="var(--teal)" />
-                    <span>Filing Date</span>
-                  </div>
-                  <div style={{ fontSize: '0.86rem', fontWeight: '800', color: 'var(--text-title)' }}>
-                    {current.filingDate}
-                  </div>
-                </div>
-
-                <div style={{ padding: '12px 14px', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: 'var(--text-dim)', marginBottom: '2px', textTransform: 'uppercase', fontWeight: '700' }}>
-                    <CheckCircle2 size={13} color="#10B981" />
-                    <span>Validity Period</span>
-                  </div>
-                  <div style={{ fontSize: '0.86rem', fontWeight: '800', color: '#10B981' }}>
-                    {current.validUpto}
-                  </div>
-                </div>
-              </div>
-
-              {/* Action & Explorer Jump */}
-              <button
-                onClick={() => onRunDemoSearch(current.mark, 'contains')}
-                className="btn-secondary"
+              <Search size={22} color="var(--brand-primary)" style={{ marginRight: '12px', flexShrink: 0 }} />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={`Enter ${searchTypeLabels[searchType]} (e.g. NIKE, 1948201, Tata)...`}
                 style={{
-                  width: '100%',
-                  padding: '12px',
-                  fontSize: '0.88rem',
-                  fontWeight: '700',
-                  borderRadius: '12px',
-                  justifyContent: 'center',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
+                  flex: 1,
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '1.05rem',
+                  fontWeight: '600',
+                  color: 'var(--text-title)',
+                  fontFamily: 'inherit'
                 }}
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="btn-primary"
+                style={{ padding: '12px 28px', fontSize: '1rem', flexShrink: 0 }}
               >
-                <span>Search All {current.totalActive} Records for "{current.mark}"</span>
-                <ArrowRight size={15} />
+                <span>Search</span>
+                <ArrowRight size={16} />
               </button>
-
-              {/* Bottom Guarantee */}
-              <div style={{
-                marginTop: '16px',
-                paddingTop: '12px',
-                borderTop: '1px solid var(--border-subtle)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                fontSize: '0.74rem',
-                color: 'var(--text-dim)'
-              }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Zap size={13} color="var(--teal)" />
-                  <span>Sub-15ms Query Speed</span>
-                </span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Shield size={13} color="var(--teal)" />
-                  <span>100% Registry Accuracy</span>
-                </span>
-              </div>
-
             </div>
 
-          </div>
+            {/* Search Mode Radios */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '12px',
+              paddingTop: '12px',
+              borderTop: '1px solid var(--border-subtle)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: '700', color: 'var(--text-muted)' }}>
+                  Search Mode:
+                </span>
 
+                {[
+                  { id: 'contains', label: 'Contains' },
+                  { id: 'startswith', label: 'Starts With' },
+                  { id: 'exact', label: 'Exact Match' }
+                ].map((mode) => (
+                  <label
+                    key={mode.id}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '0.85rem',
+                      fontWeight: searchMode === mode.id ? '700' : '500',
+                      color: searchMode === mode.id ? 'var(--brand-primary)' : 'var(--text-main)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <input
+                      type="radio"
+                      name="searchMode"
+                      value={mode.id}
+                      checked={searchMode === mode.id}
+                      onChange={() => setSearchMode(mode.id)}
+                      style={{ accentColor: 'var(--brand-primary)', cursor: 'pointer' }}
+                    />
+                    <span>{mode.label}</span>
+                  </label>
+                ))}
+              </div>
+
+              {/* Quick Preset Buttons */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ fontSize: '0.76rem', color: 'var(--text-dim)' }}>Popular:</span>
+                {['NIKE', 'APPLE', 'TATA', 'SWIGGY'].map((sample) => (
+                  <button
+                    key={sample}
+                    type="button"
+                    onClick={() => {
+                      setQuery(sample);
+                      onExecuteSearch({ query: sample, searchType: 'trademark', searchMode: 'contains' });
+                    }}
+                    style={{
+                      fontSize: '0.74rem',
+                      fontWeight: '700',
+                      color: 'var(--brand-primary)',
+                      background: 'var(--brand-light)',
+                      border: '1px solid rgba(15, 90, 162, 0.2)',
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {sample}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          </form>
         </div>
+
+        {/* Example Explanation Display */}
+        <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+          Search by exact match, starts with, or contains across 20+ Lakh verified records.
+        </p>
 
       </div>
     </section>

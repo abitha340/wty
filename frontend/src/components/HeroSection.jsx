@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Search, Sparkles, ArrowRight, ShieldCheck, Database, Layers, CheckCircle2 } from 'lucide-react';
 
 export default function HeroSection({ onExecuteSearch }) {
   const [query, setQuery] = useState('');
-  const [searchType, setSearchType] = useState('trademark'); // 'trademark' | 'app_number' | 'tm_number' | 'owner'
-  const [searchMode, setSearchMode] = useState('contains'); // 'exact' | 'startswith' | 'contains'
+  const [searchType, setSearchType] = useState('trademark');
+  const [searchMode, setSearchMode] = useState('contains');
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    if (!query.trim()) return;
     onExecuteSearch({
-      query: query.trim() || 'NIKE',
+      query: query.trim(),
       searchType,
       searchMode
     });
@@ -17,51 +18,74 @@ export default function HeroSection({ onExecuteSearch }) {
 
   const searchTypeLabels = {
     trademark: "Trademark Name",
-    app_number: "Application Number",
-    tm_number: "Trademark Number",
+    application_no: "Application Number",
+    trademark_no: "Trademark Number",
     owner: "Owner / Proprietor"
   };
 
   return (
     <section style={{
       position: 'relative',
-      paddingTop: '64px',
+      paddingTop: '60px',
       paddingBottom: '80px',
       background: 'linear-gradient(180deg, var(--brand-tint) 0%, var(--bg-page) 100%)',
       borderBottom: '1px solid var(--border-subtle)'
     }}>
-      <div className="container" style={{ textAlign: 'center', maxWidth: '860px', margin: '0 auto' }}>
+      <div className="container" style={{ textAlign: 'center', maxWidth: '880px', margin: '0 auto' }}>
         
-        {/* Top Badge */}
+        {/* Top Intro Badge */}
         <div style={{ display: 'inline-flex', marginBottom: '18px' }}>
-          <div className="badge badge-blue">
-            <Sparkles size={14} />
-            <span>Official Trademark Search Platform</span>
+          <div className="badge badge-blue" style={{ padding: '8px 18px', fontSize: '0.86rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Sparkles size={15} color="var(--brand-primary)" />
+            <span>Welcome to Wyt • Trademark Intelligence Platform</span>
           </div>
         </div>
 
-        {/* Main Heading */}
+        {/* Main Application Introduction Heading */}
         <h1 style={{
-          fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
+          fontSize: 'clamp(2.3rem, 4.2vw, 3.6rem)',
           fontWeight: '900',
           letterSpacing: '-0.03em',
-          marginBottom: '18px',
-          color: 'var(--text-title)'
+          marginBottom: '20px',
+          color: 'var(--text-title)',
+          lineHeight: 1.15
         }}>
-          Search Trademark Information Easily
+          Discover, Understand & Explore Trademarks in One Place
         </h1>
 
-        {/* Supporting Text */}
+        {/* Comprehensive Application Introduction Text */}
         <p style={{
-          fontSize: '1.15rem',
+          fontSize: '1.14rem',
           color: 'var(--text-muted)',
-          lineHeight: 1.65,
-          marginBottom: '40px',
-          maxWidth: '720px',
-          margin: '0 auto 40px auto'
+          lineHeight: 1.7,
+          maxWidth: '760px',
+          margin: '0 auto 28px auto'
         }}>
-          Find trademark information from millions of structured trademark records. Search by trademark name, application number, trademark number, owner, class, status, or country.
+          <strong>Wyt</strong> is a modern trademark intelligence platform built for business owners, brand managers, researchers, and legal professionals. We bring millions of structured trademark records together so you can easily verify brand names, explore ownership history, track application statuses, and inspect international classifications without complexity.
         </p>
+
+        {/* Intro Value Highlights */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '18px',
+          flexWrap: 'wrap',
+          marginBottom: '36px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', fontWeight: '700', color: 'var(--brand-primary)', background: '#ffffff', padding: '6px 14px', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+            <ShieldCheck size={16} color="var(--brand-primary)" />
+            <span>Verified Registry Records</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', fontWeight: '700', color: 'var(--brand-primary)', background: '#ffffff', padding: '6px 14px', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+            <Database size={16} color="var(--brand-primary)" />
+            <span>20+ Lakh Structured Records</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', fontWeight: '700', color: 'var(--brand-primary)', background: '#ffffff', padding: '6px 14px', borderRadius: '20px', border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-sm)' }}>
+            <Layers size={16} color="var(--brand-primary)" />
+            <span>All 45 Trademark Classes</span>
+          </div>
+        </div>
 
         {/* =========================================================================
             LARGE MAIN SEARCH COMPONENT
@@ -130,7 +154,6 @@ export default function HeroSection({ onExecuteSearch }) {
                   color: 'var(--text-title)',
                   fontFamily: 'inherit'
                 }}
-                autoFocus
               />
               <button
                 type="submit"

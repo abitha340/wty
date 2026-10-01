@@ -40,31 +40,46 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
   return (
     <section style={{
-      paddingTop: '88px',
-      paddingBottom: '96px',
+      paddingTop: '96px',
+      paddingBottom: '108px',
       background: 'linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%)',
       borderBottom: '1px solid #e1ecf9',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px' }}>
+      
+      {/* Background Soft Ambient Light Elements */}
+      <div style={{
+        position: 'absolute',
+        top: '10%',
+        left: '2%',
+        width: '500px',
+        height: '500px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(225, 236, 249, 0.7) 0%, rgba(240, 246, 252, 0.3) 50%, transparent 75%)',
+        filter: 'blur(30px)',
+        pointerEvents: 'none',
+        zIndex: 0
+      }} />
+
+      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
         
         {/* =========================================================================
             CENTERED SECTION HEADER
            ========================================================================= */}
-        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 56px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 64px auto' }}>
           
           {/* Badge */}
-          <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
+          <div style={{ display: 'inline-flex', marginBottom: '16px' }}>
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '7px 18px',
+              padding: '8px 20px',
               borderRadius: '24px',
               background: '#e1ecf9',
               color: '#0f5aa2',
-              fontSize: '0.86rem',
+              fontSize: '0.88rem',
               fontWeight: '700',
               boxShadow: '0 2px 8px rgba(15, 90, 162, 0.08)'
             }}>
@@ -73,13 +88,13 @@ export default function SearchTypesSection({ onExecuteSearch }) {
             </div>
           </div>
 
-          {/* Heading with Blue Accent */}
+          {/* Heading with Highlight */}
           <h2 style={{
-            fontSize: 'clamp(2.3rem, 4vw, 3.4rem)',
+            fontSize: 'clamp(2.4rem, 4.2vw, 3.5rem)',
             fontWeight: '900',
             letterSpacing: '-0.035em',
             color: '#0d1d2e',
-            marginBottom: '14px',
+            marginBottom: '16px',
             lineHeight: 1.15
           }}>
             What Can You <span style={{ color: '#0f5aa2' }}>Search?</span>
@@ -87,9 +102,9 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
           {/* Subtitle */}
           <p style={{
-            fontSize: '1.1rem',
+            fontSize: '1.14rem',
             color: '#556980',
-            lineHeight: 1.65,
+            lineHeight: 1.68,
             margin: 0
           }}>
             Search using the trademark information you already have across millions of structured registry records.
@@ -97,17 +112,17 @@ export default function SearchTypesSection({ onExecuteSearch }) {
         </div>
 
         {/* =========================================================================
-            MAIN SECTION LAYOUT: LEFT 3D ILLUSTRATION + RIGHT 4 CARDS IN A ROW
+            MAIN SECTION: 3D GRAPHIC ON LEFT & 4 ENLARGED CARDS ON RIGHT
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(300px, 380px) 1fr',
-          gap: '24px',
+          gridTemplateColumns: 'minmax(320px, 440px) 1fr',
+          gap: '32px',
           alignItems: 'center'
         }} className="search-identifiers-grid">
           
           {/* =========================================================================
-              LEFT: 3D SEARCH & BROWSER ILLUSTRATION
+              LEFT: 3D SEARCH & BROWSER ILLUSTRATION (SLIGHTLY ENLARGED)
              ========================================================================= */}
           <div style={{
             position: 'relative',
@@ -116,19 +131,10 @@ export default function SearchTypesSection({ onExecuteSearch }) {
             justifyContent: 'center',
             padding: '10px'
           }}>
-            {/* Ambient Radial Soft Glow */}
-            <div style={{
-              position: 'absolute',
-              inset: '-20px',
-              background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.7) 0%, rgba(240, 246, 252, 0.3) 60%, transparent 80%)',
-              pointerEvents: 'none',
-              zIndex: 1
-            }} />
-
             <div style={{
               position: 'relative',
               width: '100%',
-              zIndex: 2,
+              maxWidth: '460px',
               animation: 'subtleSearchFloat 5s ease-in-out infinite'
             }}>
               <img
@@ -139,19 +145,20 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                   height: 'auto',
                   display: 'block',
                   objectFit: 'contain',
-                  mixBlendMode: 'multiply'
+                  mixBlendMode: 'multiply',
+                  filter: 'drop-shadow(0 14px 32px rgba(15, 90, 162, 0.12))'
                 }}
               />
             </div>
           </div>
 
           {/* =========================================================================
-              RIGHT: 4 CARDS ROW
+              RIGHT: 4 SLIGHTLY ENLARGED CARDS IN A ROW
              ========================================================================= */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-            gap: '18px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '20px'
           }}>
             {searchTypes.map((item) => {
               const IconComp = item.icon;
@@ -161,26 +168,27 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                   onClick={() => onExecuteSearch && onExecuteSearch({ query: item.sample, searchType: item.id, searchMode: 'contains' })}
                   style={{
                     background: '#ffffff',
-                    borderRadius: '20px',
-                    padding: '24px 20px',
+                    borderRadius: '22px',
+                    padding: '28px 22px',
                     border: '1px solid #e1ecf9',
-                    boxShadow: '0 6px 20px rgba(15, 90, 162, 0.05)',
+                    boxShadow: '0 8px 24px rgba(15, 90, 162, 0.06)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    minHeight: '310px',
+                    minHeight: '340px',
                     cursor: 'pointer',
-                    transition: 'all 0.25s ease'
+                    position: 'relative',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-6px)';
+                    e.currentTarget.style.transform = 'translateY(-8px)';
                     e.currentTarget.style.borderColor = '#0f5aa2';
-                    e.currentTarget.style.boxShadow = '0 14px 32px rgba(15, 90, 162, 0.12)';
+                    e.currentTarget.style.boxShadow = '0 18px 40px rgba(15, 90, 162, 0.15)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.borderColor = '#e1ecf9';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(15, 90, 162, 0.05)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(15, 90, 162, 0.06)';
                   }}
                 >
                   <div>
@@ -189,28 +197,29 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      marginBottom: '18px'
+                      marginBottom: '22px'
                     }}>
                       <div style={{
-                        width: '46px',
-                        height: '46px',
+                        width: '52px',
+                        height: '52px',
                         borderRadius: '50%',
                         background: '#f0f6fc',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        border: '1px solid #e1ecf9'
+                        border: '1px solid #e1ecf9',
+                        boxShadow: '0 4px 10px rgba(15, 90, 162, 0.06)'
                       }}>
-                        <IconComp size={22} color="#0f5aa2" />
+                        <IconComp size={24} color="#0f5aa2" />
                       </div>
 
                       <span style={{
-                        fontSize: '0.78rem',
+                        fontSize: '0.82rem',
                         fontWeight: '800',
                         color: '#0f5aa2',
                         background: '#f0f6fc',
-                        padding: '4px 10px',
-                        borderRadius: '10px',
+                        padding: '4px 12px',
+                        borderRadius: '12px',
                         border: '1px solid #e1ecf9'
                       }}>
                         {item.index}
@@ -219,10 +228,10 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
                     {/* Title */}
                     <h3 style={{
-                      fontSize: '1.08rem',
+                      fontSize: '1.16rem',
                       fontWeight: '800',
                       color: '#0d1d2e',
-                      marginBottom: '8px',
+                      marginBottom: '10px',
                       lineHeight: 1.25
                     }}>
                       {item.title}
@@ -230,46 +239,48 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
                     {/* Description */}
                     <p style={{
-                      fontSize: '0.82rem',
+                      fontSize: '0.88rem',
                       color: '#687d94',
-                      lineHeight: 1.55,
-                      margin: '0 0 20px 0'
+                      lineHeight: 1.6,
+                      margin: '0 0 24px 0'
                     }}>
                       {item.desc}
                     </p>
                   </div>
 
-                  {/* Bottom Footer: Pill Example + Arrow Button */}
+                  {/* Bottom Footer: Pill Example + Blue Arrow Button */}
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '8px',
-                    marginTop: 'auto'
+                    gap: '10px',
+                    marginTop: 'auto',
+                    paddingTop: '16px',
+                    borderTop: '1px solid #f8fafc'
                   }}>
                     <div style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '5px',
-                      fontSize: '0.76rem',
+                      gap: '6px',
+                      fontSize: '0.8rem',
                       fontWeight: '700',
                       color: '#0f5aa2',
                       background: '#f0f6fc',
-                      padding: '6px 10px',
-                      borderRadius: '8px',
+                      padding: '7px 12px',
+                      borderRadius: '10px',
                       border: '1px solid rgba(15, 90, 162, 0.12)',
                       flex: 1,
                       overflow: 'hidden',
                       whiteSpace: 'nowrap',
                       textOverflow: 'ellipsis'
                     }}>
-                      <Search size={12} color="#0f5aa2" style={{ flexShrink: 0 }} />
+                      <Search size={13} color="#0f5aa2" style={{ flexShrink: 0 }} />
                       <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>e.g. {item.sample}</span>
                     </div>
 
                     <div style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '36px',
+                      height: '36px',
                       borderRadius: '50%',
                       background: '#0f5aa2',
                       color: '#ffffff',
@@ -277,9 +288,9 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 2px 8px rgba(15, 90, 162, 0.25)'
+                      boxShadow: '0 3px 10px rgba(15, 90, 162, 0.28)'
                     }}>
-                      <ArrowRight size={15} />
+                      <ArrowRight size={16} />
                     </div>
                   </div>
 
@@ -295,10 +306,10 @@ export default function SearchTypesSection({ onExecuteSearch }) {
       <style>{`
         @keyframes subtleSearchFloat {
           0% { transform: translateY(0px); }
-          50% { transform: translateY(-6px); }
+          50% { transform: translateY(-7px); }
           100% { transform: translateY(0px); }
         }
-        @media (max-width: 960px) {
+        @media (max-width: 1040px) {
           .search-identifiers-grid {
             grid-template-columns: 1fr !important;
           }

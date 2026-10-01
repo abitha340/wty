@@ -1,119 +1,219 @@
 import React from 'react';
-import { Tag, Hash, FileText, Building2, Layers, ShieldCheck, Globe, Calendar } from 'lucide-react';
+import { Tag, Hash, FileText, Building2, Layers, ShieldCheck, Globe, Calendar, Sparkles } from 'lucide-react';
+import docIllustration from '../assets/modern_tm_document.png';
 
 export default function TrademarkInfoSection() {
-  const cards = [
+  const attributes = [
     {
-      title: "Trademark",
-      desc: "The name, representation, wordmark, or brand phrase filed in the official trademark registry.",
-      icon: Tag,
-      sample: "NIKE AIR"
+      id: 'trademark',
+      title: 'Trademark',
+      desc: 'The name, representation, wordmark, or brand phrase filed in the registry.',
+      icon: Tag
     },
     {
-      title: "Application Number",
-      desc: "The unique statutory application identifier assigned upon initial government filing.",
-      icon: Hash,
-      sample: "App #1948201"
+      id: 'application_no',
+      title: 'Application Number',
+      desc: 'The unique statutory application identifier assigned upon initial government filing.',
+      icon: Hash
     },
     {
-      title: "Trademark Number",
-      desc: "The formal registration certificate identifier issued upon official trademark granting.",
-      icon: FileText,
-      sample: "TM-849201"
+      id: 'trademark_no',
+      title: 'Trademark Number',
+      desc: 'The formal registration certificate identifier issued upon granting.',
+      icon: FileText
     },
     {
-      title: "Owner / Proprietor",
-      desc: "Information about the company, organization, or individual holding legal ownership.",
-      icon: Building2,
-      sample: "Nike Innovate C.V."
+      id: 'owner',
+      title: 'Owner / Proprietor',
+      desc: 'Information about the company, organization, or individual holding legal ownership.',
+      icon: Building2
     },
     {
-      title: "Class",
-      desc: "The international Nice Classification (Classes 1 to 45) categorizing the goods or services.",
-      icon: Layers,
-      sample: "Class 25 (Apparel)"
+      id: 'class',
+      title: 'Class',
+      desc: 'The international Nice Classification (Classes 1 to 45) categorizing goods or services.',
+      icon: Layers
     },
     {
-      title: "Status",
-      desc: "The current legal lifecycle state: Registered, Pending Examination, Objected, or Opposed.",
-      icon: ShieldCheck,
-      sample: "Registered & Active"
+      id: 'status',
+      title: 'Status',
+      desc: 'The current legal lifecycle state: Registered, Pending Examination, Objected, or Opposed.',
+      icon: ShieldCheck
     },
     {
-      title: "Country",
-      desc: "The official jurisdiction and regional branch office handling the trademark filing.",
-      icon: Globe,
-      sample: "India & Global"
+      id: 'country',
+      title: 'Country',
+      desc: 'The official jurisdiction and regional branch office handling the trademark filing.',
+      icon: Globe
     },
     {
-      title: "Important Dates",
-      desc: "Key statutory dates including filing date, publication date, registration date, and renewal deadlines.",
-      icon: Calendar,
-      sample: "Filing: 12 May 2018"
+      id: 'dates',
+      title: 'Important Dates',
+      desc: 'Key statutory dates including filing date, publication date, registration date, and renewal deadlines.',
+      icon: Calendar
     }
   ];
 
   return (
-    <section style={{ padding: '80px 0', borderBottom: '1px solid var(--border-subtle)', background: 'var(--bg-page)' }}>
-      <div className="container">
+    <section style={{
+      paddingTop: '88px',
+      paddingBottom: '96px',
+      background: '#ffffff',
+      borderBottom: '1px solid #e1ecf9',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      <div className="container" style={{ maxWidth: '1320px', margin: '0 auto', padding: '0 24px' }}>
         
-        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 48px auto' }}>
-          <div className="badge badge-blue" style={{ marginBottom: '12px' }}>
-            Structured Data Attributes
+        {/* =========================================================================
+            2-COLUMN GRID: LEFT = HEADER & 2x4 ATTRIBUTES | RIGHT = 3D TM DOCUMENT
+           ========================================================================= */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gap: '52px',
+          alignItems: 'center'
+        }}>
+          
+          {/* =========================================================================
+              LEFT COLUMN: HEADER & 8 STRUCTURED ATTRIBUTES (2-COL SUBGRID)
+             ========================================================================= */}
+          <div>
+            
+            {/* Badge */}
+            <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
+              <span style={{
+                display: 'inline-block',
+                padding: '6px 18px',
+                borderRadius: '20px',
+                background: '#e1ecf9',
+                color: '#0f5aa2',
+                fontSize: '0.86rem',
+                fontWeight: '700',
+                letterSpacing: '-0.01em'
+              }}>
+                Structured Data Attributes
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h2 style={{
+              fontSize: 'clamp(2.2rem, 3.6vw, 3.2rem)',
+              fontWeight: '900',
+              letterSpacing: '-0.035em',
+              color: '#0d1d2e',
+              marginBottom: '16px',
+              lineHeight: 1.15
+            }}>
+              Everything You Need to<br />
+              Know About a Trademark
+            </h2>
+
+            {/* Description */}
+            <p style={{
+              fontSize: '1.05rem',
+              color: '#556980',
+              lineHeight: 1.65,
+              marginBottom: '40px',
+              maxWidth: '620px'
+            }}>
+              Explore structured trademark information in one place, from basic trademark details to ownership, classification, status, country, and important dates.
+            </p>
+
+            {/* 2x4 Sub-Grid for Attributes */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '24px 28px'
+            }}>
+              {attributes.map((attr) => {
+                const IconComp = attr.icon;
+                return (
+                  <div
+                    key={attr.id}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '14px',
+                      transition: 'transform 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                  >
+                    {/* Icon Box */}
+                    <div style={{
+                      width: '42px',
+                      height: '42px',
+                      borderRadius: '10px',
+                      background: '#f0f6fc',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      border: '1px solid #e1ecf9',
+                      boxShadow: '0 2px 6px rgba(15, 90, 162, 0.04)'
+                    }}>
+                      <IconComp size={20} color="#0f5aa2" />
+                    </div>
+
+                    {/* Content */}
+                    <div>
+                      <h4 style={{
+                        fontSize: '1rem',
+                        fontWeight: '800',
+                        color: '#0d1d2e',
+                        marginBottom: '4px',
+                        lineHeight: 1.25
+                      }}>
+                        {attr.title}
+                      </h4>
+                      <p style={{
+                        fontSize: '0.84rem',
+                        color: '#687d94',
+                        lineHeight: 1.5,
+                        margin: 0
+                      }}>
+                        {attr.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
-          <h2 style={{ fontSize: '2.4rem', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '12px', color: 'var(--text-title)' }}>
-            Everything You Need to Know About a Trademark
-          </h2>
-          <p style={{ fontSize: '1.08rem', color: 'var(--text-muted)' }}>
-            Explore structured trademark information in one place, from basic trademark details to ownership, classification, status, country, and important dates.
-          </p>
-        </div>
 
-        <div className="grid-4">
-          {cards.map((c, idx) => {
-            const Icon = c.icon;
-            return (
-              <div 
-                key={idx}
-                className="card-clean"
-                style={{ padding: '24px', background: '#ffffff' }}
-              >
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '10px',
-                  background: 'var(--brand-light)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--brand-primary)',
-                  marginBottom: '16px'
-                }}>
-                  <Icon size={20} />
-                </div>
+          {/* =========================================================================
+              RIGHT COLUMN: 3D TM DOCUMENT ILLUSTRATION
+             ========================================================================= */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative'
+          }}>
+            <div style={{
+              width: '100%',
+              maxWidth: '560px',
+              position: 'relative',
+              transition: 'transform 0.3s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}>
+              <img
+                src={docIllustration}
+                alt="Modern Trademark Document Illustration"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 16px 36px rgba(15, 90, 162, 0.12))'
+                }}
+              />
+            </div>
+          </div>
 
-                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-title)', marginBottom: '8px' }}>
-                  {c.title}
-                </h3>
-
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: '16px' }}>
-                  {c.desc}
-                </p>
-
-                <div style={{
-                  fontSize: '0.78rem',
-                  fontWeight: '700',
-                  color: 'var(--brand-primary)',
-                  background: 'var(--brand-tint)',
-                  padding: '4px 10px',
-                  borderRadius: '6px',
-                  display: 'inline-block'
-                }}>
-                  {c.sample}
-                </div>
-              </div>
-            );
-          })}
         </div>
 
       </div>

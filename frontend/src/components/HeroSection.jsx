@@ -1,20 +1,21 @@
 import React from 'react';
 import { Compass, BookOpen, ArrowRight, Globe, ShieldCheck, Search, FileText, Sparkles } from 'lucide-react';
+import heroGlobe from '../assets/hero_globe.jpg';
 
 export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
   return (
     <section style={{
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(180deg, #ffffff 0%, #f7fbff 100%)',
+      background: '#ffffff',
       paddingTop: '64px',
-      paddingBottom: '90px',
+      paddingBottom: '88px',
       borderBottom: '1px solid #e1ecf9'
     }}>
       <div className="container" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-        gap: '48px',
+        gap: '40px',
         alignItems: 'center',
         padding: '0 24px',
         maxWidth: '1280px',
@@ -27,12 +28,12 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
         <div style={{ zIndex: 2 }}>
           
           {/* Top Badge */}
-          <div style={{ display: 'inline-flex', marginBottom: '24px' }}>
+          <div style={{ display: 'inline-flex', marginBottom: '22px' }}>
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '8px 18px',
+              padding: '7px 18px',
               borderRadius: '24px',
               background: '#e1ecf9',
               color: '#0f5aa2',
@@ -52,7 +53,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
             lineHeight: 1.15,
             letterSpacing: '-0.035em',
             color: '#0d1d2e',
-            marginBottom: '24px'
+            marginBottom: '22px'
           }}>
             Discover, Understand &<br />
             Explore Trademarks<br />
@@ -64,7 +65,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
             fontSize: '1.08rem',
             color: '#556980',
             lineHeight: 1.75,
-            marginBottom: '38px',
+            marginBottom: '36px',
             maxWidth: '560px'
           }}>
             Wyt is a modern trademark intelligence platform designed for business owners, brand managers, researchers, and legal professionals. We bring millions of structured trademark records together in a unified interface so you can easily verify brand availability, explore ownership history, track application statuses, and inspect international classifications without complexity.
@@ -80,7 +81,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
                 alignItems: 'center',
                 gap: '10px',
                 padding: '14px 28px',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 background: '#0f5aa2',
                 color: '#ffffff',
                 fontSize: '1rem',
@@ -106,7 +107,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '13px 24px',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 background: '#ffffff',
                 color: '#0f5aa2',
                 fontSize: '1rem',
@@ -133,73 +134,37 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
         </div>
 
         {/* =========================================================================
-            RIGHT COLUMN: Interactive Dotted World Map with 4 Floating Glass Cards
+            RIGHT COLUMN: Realistic 3D Globe with 4 Floating Glass Cards
            ========================================================================= */}
         <div style={{
           position: 'relative',
-          minHeight: '440px',
+          minHeight: '460px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}>
           
-          {/* Dotted World Map Graphic */}
+          {/* Globe Background Image */}
           <div style={{
             position: 'absolute',
             inset: 0,
-            width: '100%',
-            height: '100%',
-            opacity: 0.9,
-            pointerEvents: 'none'
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1
           }}>
-            <svg width="100%" height="100%" viewBox="0 0 650 420" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
-              
-              {/* Connection Arcs */}
-              <path d="M 60 200 C 180 80, 420 60, 560 200" stroke="#0f5aa2" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.35" />
-              <path d="M 120 280 C 260 380, 480 320, 580 180" stroke="#0f5aa2" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.3" />
-              <path d="M 180 140 C 300 240, 440 220, 520 300" stroke="#0f5aa2" strokeWidth="1.2" opacity="0.25" />
-              
-              {/* Glowing Nodes */}
-              <circle cx="100" cy="190" r="5" fill="#0f5aa2" />
-              <circle cx="100" cy="190" r="10" stroke="#0f5aa2" strokeWidth="1.5" opacity="0.4" />
-              
-              <circle cx="280" cy="120" r="4" fill="#0f5aa2" />
-              <circle cx="280" cy="120" r="8" stroke="#0f5aa2" strokeWidth="1" opacity="0.35" />
-
-              <circle cx="380" cy="270" r="5.5" fill="#0f5aa2" />
-              <circle cx="380" cy="270" r="11" stroke="#0f5aa2" strokeWidth="1.5" opacity="0.45" />
-
-              <circle cx="540" cy="195" r="4.5" fill="#0f5aa2" />
-              <circle cx="540" cy="195" r="9" stroke="#0f5aa2" strokeWidth="1.2" opacity="0.4" />
-
-              {/* Dotted Global Density Cluster (Continents representation) */}
-              <g fill="#0f5aa2" opacity="0.38">
-                {/* North & South America Region */}
-                <circle cx="80" cy="140" r="2.2" /><circle cx="95" cy="135" r="2.2" /><circle cx="110" cy="140" r="2.2" />
-                <circle cx="70" cy="155" r="2.2" /><circle cx="85" cy="150" r="2.2" /><circle cx="100" cy="155" r="2.2" /><circle cx="115" cy="150" r="2.2" />
-                <circle cx="80" cy="170" r="2.2" /><circle cx="95" cy="165" r="2.2" /><circle cx="110" cy="170" r="2.2" /><circle cx="125" cy="165" r="2.2" />
-                <circle cx="90" cy="185" r="2.2" /><circle cx="105" cy="180" r="2.2" /><circle cx="120" cy="185" r="2.2" />
-                <circle cx="110" cy="220" r="2.2" /><circle cx="125" cy="235" r="2.2" /><circle cx="135" cy="250" r="2.2" />
-                <circle cx="130" cy="270" r="2.2" /><circle cx="140" cy="290" r="2.2" /><circle cx="135" cy="310" r="2.2" />
-
-                {/* Europe & Africa Region */}
-                <circle cx="260" cy="120" r="2.2" /><circle cx="275" cy="115" r="2.2" /><circle cx="290" cy="120" r="2.2" /><circle cx="305" cy="115" r="2.2" />
-                <circle cx="255" cy="135" r="2.2" /><circle cx="270" cy="130" r="2.2" /><circle cx="285" cy="135" r="2.2" /><circle cx="300" cy="130" r="2.2" />
-                <circle cx="265" cy="160" r="2.2" /><circle cx="280" cy="155" r="2.2" /><circle cx="295" cy="160" r="2.2" /><circle cx="310" cy="155" r="2.2" />
-                <circle cx="270" cy="180" r="2.2" /><circle cx="285" cy="175" r="2.2" /><circle cx="300" cy="180" r="2.2" /><circle cx="315" cy="185" r="2.2" />
-                <circle cx="275" cy="210" r="2.2" /><circle cx="290" cy="225" r="2.2" /><circle cx="305" cy="240" r="2.2" /><circle cx="310" cy="260" r="2.2" />
-                <circle cx="295" cy="280" r="2.2" /><circle cx="300" cy="300" r="2.2" /><circle cx="305" cy="320" r="2.2" />
-
-                {/* Asia & Pacific Region */}
-                <circle cx="370" cy="110" r="2.2" /><circle cx="390" cy="105" r="2.2" /><circle cx="410" cy="110" r="2.2" /><circle cx="430" cy="105" r="2.2" /><circle cx="450" cy="110" r="2.2" /><circle cx="470" cy="105" r="2.2" /><circle cx="490" cy="110" r="2.2" />
-                <circle cx="360" cy="130" r="2.2" /><circle cx="380" cy="125" r="2.2" /><circle cx="400" cy="130" r="2.2" /><circle cx="420" cy="125" r="2.2" /><circle cx="440" cy="130" r="2.2" /><circle cx="460" cy="125" r="2.2" /><circle cx="480" cy="130" r="2.2" /><circle cx="500" cy="125" r="2.2" />
-                <circle cx="375" cy="150" r="2.2" /><circle cx="395" cy="145" r="2.2" /><circle cx="415" cy="150" r="2.2" /><circle cx="435" cy="145" r="2.2" /><circle cx="455" cy="150" r="2.2" /><circle cx="475" cy="145" r="2.2" /><circle cx="495" cy="150" r="2.2" />
-                <circle cx="410" cy="170" r="2.2" /><circle cx="430" cy="165" r="2.2" /><circle cx="450" cy="170" r="2.2" /><circle cx="470" cy="165" r="2.2" /><circle cx="490" cy="170" r="2.2" /><circle cx="520" cy="165" r="2.2" />
-                <circle cx="420" cy="190" r="2.2" /><circle cx="440" cy="185" r="2.2" /><circle cx="460" cy="190" r="2.2" /><circle cx="480" cy="185" r="2.2" /><circle cx="530" cy="190" r="2.2" />
-                <circle cx="430" cy="215" r="2.2" /><circle cx="450" cy="210" r="2.2" /><circle cx="470" cy="225" r="2.2" /><circle cx="490" cy="240" r="2.2" />
-                <circle cx="490" cy="280" r="2.2" /><circle cx="510" cy="290" r="2.2" /><circle cx="530" cy="285" r="2.2" /><circle cx="540" cy="305" r="2.2" />
-              </g>
-            </svg>
+            <img
+              src={heroGlobe}
+              alt="Global Trademark Intelligence Coverage"
+              style={{
+                width: '100%',
+                maxWidth: '560px',
+                height: 'auto',
+                objectFit: 'contain',
+                borderRadius: '24px',
+                mixBlendMode: 'multiply'
+              }}
+            />
           </div>
 
           {/* =========================================================================
@@ -209,24 +174,24 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
           {/* Card 1: Global Coverage (Top-Right) */}
           <div style={{
             position: 'absolute',
-            top: '18px',
-            right: '28px',
-            background: 'rgba(255, 255, 255, 0.94)',
-            backdropFilter: 'blur(10px)',
+            top: '12px',
+            right: '18px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(12px)',
             borderRadius: '16px',
-            padding: '14px 20px',
+            padding: '13px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: '14px',
-            boxShadow: '0 12px 32px rgba(15, 90, 162, 0.12)',
-            border: '1px solid rgba(225, 236, 249, 0.95)',
-            zIndex: 3,
-            minWidth: '190px',
-            animation: 'floating 4s ease-in-out infinite'
+            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
+            border: '1px solid #e1ecf9',
+            zIndex: 4,
+            minWidth: '185px',
+            animation: 'floating 4.5s ease-in-out infinite'
           }}>
             <div style={{
-              width: '42px',
-              height: '42px',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
               background: '#f0f6fc',
               display: 'flex',
@@ -236,7 +201,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
               <Globe size={22} color="#0f5aa2" />
             </div>
             <div>
-              <div style={{ fontSize: '0.96rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
                 Global Coverage
               </div>
               <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
@@ -248,24 +213,24 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
           {/* Card 2: Verified Data (Middle-Left) */}
           <div style={{
             position: 'absolute',
-            top: '140px',
-            left: '10px',
-            background: 'rgba(255, 255, 255, 0.94)',
-            backdropFilter: 'blur(10px)',
+            top: '155px',
+            left: '-6px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(12px)',
             borderRadius: '16px',
-            padding: '14px 20px',
+            padding: '13px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: '14px',
-            boxShadow: '0 12px 32px rgba(15, 90, 162, 0.12)',
-            border: '1px solid rgba(225, 236, 249, 0.95)',
-            zIndex: 3,
+            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
+            border: '1px solid #e1ecf9',
+            zIndex: 4,
             minWidth: '180px',
-            animation: 'floating 4.5s ease-in-out infinite 0.5s'
+            animation: 'floating 5s ease-in-out infinite 0.6s'
           }}>
             <div style={{
-              width: '42px',
-              height: '42px',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
               background: '#0f5aa2',
               display: 'flex',
@@ -275,7 +240,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
               <ShieldCheck size={22} color="#ffffff" />
             </div>
             <div>
-              <div style={{ fontSize: '0.96rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
                 Verified Data
               </div>
               <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
@@ -287,24 +252,24 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
           {/* Card 3: Easy Search (Middle-Right) */}
           <div style={{
             position: 'absolute',
-            top: '185px',
-            right: '0px',
-            background: 'rgba(255, 255, 255, 0.94)',
-            backdropFilter: 'blur(10px)',
+            top: '190px',
+            right: '-10px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(12px)',
             borderRadius: '16px',
-            padding: '14px 20px',
+            padding: '13px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: '14px',
-            boxShadow: '0 12px 32px rgba(15, 90, 162, 0.12)',
-            border: '1px solid rgba(225, 236, 249, 0.95)',
-            zIndex: 3,
-            minWidth: '190px',
-            animation: 'floating 5s ease-in-out infinite 1s'
+            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
+            border: '1px solid #e1ecf9',
+            zIndex: 4,
+            minWidth: '185px',
+            animation: 'floating 4.8s ease-in-out infinite 1.2s'
           }}>
             <div style={{
-              width: '42px',
-              height: '42px',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
               background: '#f0f6fc',
               display: 'flex',
@@ -314,7 +279,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
               <Search size={22} color="#0f5aa2" />
             </div>
             <div>
-              <div style={{ fontSize: '0.96rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
                 Easy Search
               </div>
               <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
@@ -326,24 +291,24 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
           {/* Card 4: Track Applications (Bottom-Center/Right) */}
           <div style={{
             position: 'absolute',
-            bottom: '22px',
-            left: '140px',
-            background: 'rgba(255, 255, 255, 0.94)',
-            backdropFilter: 'blur(10px)',
+            bottom: '18px',
+            left: '120px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(12px)',
             borderRadius: '16px',
-            padding: '14px 20px',
+            padding: '13px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: '14px',
-            boxShadow: '0 12px 32px rgba(15, 90, 162, 0.12)',
-            border: '1px solid rgba(225, 236, 249, 0.95)',
-            zIndex: 3,
+            boxShadow: '0 12px 30px rgba(15, 90, 162, 0.12)',
+            border: '1px solid #e1ecf9',
+            zIndex: 4,
             minWidth: '205px',
-            animation: 'floating 4.2s ease-in-out infinite 1.5s'
+            animation: 'floating 4.2s ease-in-out infinite 1.8s'
           }}>
             <div style={{
-              width: '42px',
-              height: '42px',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
               background: '#0f5aa2',
               display: 'flex',
@@ -353,7 +318,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
               <FileText size={22} color="#ffffff" />
             </div>
             <div>
-              <div style={{ fontSize: '0.96rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
                 Track Applications
               </div>
               <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
@@ -369,7 +334,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
       <style>{`
         @keyframes floating {
           0% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
+          50% { transform: translateY(-7px); }
           100% { transform: translateY(0px); }
         }
       `}</style>

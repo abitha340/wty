@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tag, Hash, FileText, Building2, ArrowRight, Sparkles } from 'lucide-react';
-import rightIllustration from '../assets/search_identifier_right_doc.png';
+import docIllustration from '../assets/search_identifier_right_doc.png';
 
 export default function SearchTypesSection({ onExecuteSearch }) {
   const searchTypes = [
@@ -70,19 +70,63 @@ export default function SearchTypesSection({ onExecuteSearch }) {
       <div className="container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 24px' }}>
         
         {/* =========================================================================
-            2-COLUMN GRID: LEFT = HEADER & 4 STACKED CARDS | RIGHT = 3D TM DOCUMENT
+            2-COLUMN GRID: LEFT = 3D TM DOCUMENT (MERGED) | RIGHT = HEADER & 4 CARDS
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-          gap: '48px',
+          gridTemplateColumns: 'minmax(340px, 480px) 1fr',
+          gap: '32px',
           alignItems: 'center'
-        }}>
+        }} className="search-identifiers-swapped-grid">
           
           {/* =========================================================================
-              LEFT COLUMN: HEADER & 4 STACKED CARDS WITH NUMBER BADGES
+              LEFT COLUMN: 3D TM DOCUMENT ILLUSTRATION WITH SOFT MERGING AURA
              ========================================================================= */}
-          <div>
+          <div style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '440px'
+          }}>
+            
+            {/* Ambient Radial Soft Glow extending toward the right */}
+            <div style={{
+              position: 'absolute',
+              inset: '-20px',
+              width: '130%',
+              background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.8) 0%, rgba(240, 246, 252, 0.4) 55%, transparent 75%)',
+              pointerEvents: 'none',
+              zIndex: 1
+            }} />
+
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '540px',
+              zIndex: 2,
+              animation: 'subtleSearchFloat 5s ease-in-out infinite'
+            }}>
+              <img
+                src={docIllustration}
+                alt="Search Identifiers 3D Document Illustration"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                  mixBlendMode: 'multiply',
+                  filter: 'drop-shadow(0 14px 32px rgba(15, 90, 162, 0.12))'
+                }}
+              />
+            </div>
+
+          </div>
+
+          {/* =========================================================================
+              RIGHT COLUMN: HEADER & 4 STACKED CARDS WITH NUMBER BADGES
+             ========================================================================= */}
+          <div style={{ position: 'relative', zIndex: 3 }}>
             
             {/* Header Area */}
             <div style={{ marginBottom: '36px' }}>
@@ -122,7 +166,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                 color: '#556980',
                 lineHeight: 1.65,
                 margin: 0,
-                maxWidth: '560px'
+                maxWidth: '580px'
               }}>
                 Search using the trademark information you already have across millions of structured registry records.
               </p>
@@ -168,7 +212,8 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                     {/* Main Card Box */}
                     <div style={{
                       flex: 1,
-                      background: '#ffffff',
+                      background: 'rgba(255, 255, 255, 0.96)',
+                      backdropFilter: 'blur(10px)',
                       borderRadius: '18px',
                       padding: '16px 20px',
                       border: '1px solid #e1ecf9',
@@ -178,6 +223,14 @@ export default function SearchTypesSection({ onExecuteSearch }) {
                       justifyContent: 'space-between',
                       gap: '16px',
                       transition: 'all 0.25s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#0f5aa2';
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(15, 90, 162, 0.12)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = '#e1ecf9';
+                      e.currentTarget.style.boxShadow = '0 4px 18px rgba(15, 90, 162, 0.05)';
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                         
@@ -244,48 +297,6 @@ export default function SearchTypesSection({ onExecuteSearch }) {
 
           </div>
 
-          {/* =========================================================================
-              RIGHT COLUMN: 3D TM DOCUMENT & MAGNIFYING GLASS ILLUSTRATION
-             ========================================================================= */}
-          <div style={{
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '440px'
-          }}>
-            
-            {/* Soft Ambient Radial Glow */}
-            <div style={{
-              position: 'absolute',
-              inset: '-20px',
-              background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.75) 0%, rgba(240, 246, 252, 0.35) 60%, transparent 80%)',
-              pointerEvents: 'none',
-              zIndex: 1
-            }} />
-
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '560px',
-              zIndex: 2,
-              animation: 'subtleSearchFloat 5s ease-in-out infinite'
-            }}>
-              <img
-                src={rightIllustration}
-                alt="Search Identifiers 3D Document Illustration"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  objectFit: 'contain',
-                  mixBlendMode: 'multiply'
-                }}
-              />
-            </div>
-
-          </div>
-
         </div>
 
       </div>
@@ -295,6 +306,11 @@ export default function SearchTypesSection({ onExecuteSearch }) {
           0% { transform: translateY(0px); }
           50% { transform: translateY(-7px); }
           100% { transform: translateY(0px); }
+        }
+        @media (max-width: 980px) {
+          .search-identifiers-swapped-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </section>

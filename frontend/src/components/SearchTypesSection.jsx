@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tag, Hash, FileText, Building2, ArrowRight, Sparkles, Search } from 'lucide-react';
-import fullBgImage from '../assets/search_identifiers_full_bg.png';
+import { Tag, Hash, FileText, Building2, ArrowRight, Sparkles } from 'lucide-react';
+import rightIllustration from '../assets/search_identifier_right_doc.png';
 
 export default function SearchTypesSection({ onExecuteSearch }) {
   const searchTypes = [
@@ -42,231 +42,248 @@ export default function SearchTypesSection({ onExecuteSearch }) {
     <section style={{
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '100px',
-      paddingBottom: '116px',
-      background: `#ffffff url(${fullBgImage}) no-repeat left center`,
-      backgroundSize: 'contain',
+      paddingTop: '92px',
+      paddingBottom: '100px',
+      background: 'linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%)',
       borderBottom: '1px solid #e1ecf9'
     }}>
       
-      {/* Soft Ambient Blend Overlay */}
+      {/* Top Left Section Number Pill '03' */}
       <div style={{
         position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.95) 75%, #ffffff 100%)',
-        pointerEvents: 'none',
-        zIndex: 1
-      }} />
+        top: '32px',
+        left: '32px',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '6px 14px',
+        borderRadius: '12px',
+        background: '#e1ecf9',
+        color: '#0f5aa2',
+        fontSize: '0.88rem',
+        fontWeight: '800',
+        boxShadow: '0 2px 8px rgba(15, 90, 162, 0.08)'
+      }}>
+        03
+      </div>
 
-      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+      <div className="container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 24px' }}>
         
         {/* =========================================================================
-            CENTERED SECTION HEADER
-           ========================================================================= */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 64px auto' }}>
-          
-          {/* Badge */}
-          <div style={{ display: 'inline-flex', marginBottom: '16px' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 20px',
-              borderRadius: '24px',
-              background: '#e1ecf9',
-              color: '#0f5aa2',
-              fontSize: '0.88rem',
-              fontWeight: '700',
-              boxShadow: '0 2px 8px rgba(15, 90, 162, 0.08)'
-            }}>
-              <Sparkles size={16} color="#0f5aa2" />
-              <span>Search Identifiers</span>
-            </div>
-          </div>
-
-          {/* Heading with Highlight */}
-          <h2 style={{
-            fontSize: 'clamp(2.4rem, 4.2vw, 3.5rem)',
-            fontWeight: '900',
-            letterSpacing: '-0.035em',
-            color: '#0d1d2e',
-            marginBottom: '16px',
-            lineHeight: 1.15
-          }}>
-            What Can You <span style={{ color: '#0f5aa2' }}>Search?</span>
-          </h2>
-
-          {/* Subtitle */}
-          <p style={{
-            fontSize: '1.14rem',
-            color: '#556980',
-            lineHeight: 1.68,
-            margin: 0
-          }}>
-            Search using the trademark information you already have across millions of structured registry records.
-          </p>
-        </div>
-
-        {/* =========================================================================
-            MAIN LAYOUT: SPACIOUS 3D BACKGROUND ON LEFT + 4 FROSTED CARDS ON RIGHT
+            2-COLUMN GRID: LEFT = HEADER & 4 STACKED CARDS | RIGHT = 3D TM DOCUMENT
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(340px, 480px) 1fr',
-          gap: '36px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+          gap: '48px',
           alignItems: 'center'
-        }} className="search-identifiers-grid">
+        }}>
           
-          {/* Left Space (Transparent area so 3D background artwork shines through) */}
-          <div style={{ minHeight: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="hide-mobile">
-            {/* Visual spacing holder */}
-          </div>
+          {/* =========================================================================
+              LEFT COLUMN: HEADER & 4 STACKED CARDS WITH NUMBER BADGES
+             ========================================================================= */}
+          <div>
+            
+            {/* Header Area */}
+            <div style={{ marginBottom: '36px' }}>
+              {/* Badge */}
+              <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '7px 18px',
+                  borderRadius: '20px',
+                  background: '#e1ecf9',
+                  color: '#0f5aa2',
+                  fontSize: '0.84rem',
+                  fontWeight: '700'
+                }}>
+                  <Sparkles size={15} color="#0f5aa2" />
+                  <span>Search Identifiers</span>
+                </div>
+              </div>
 
-          {/* Right: 4 Frosted Glass Cards */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(215px, 1fr))',
-            gap: '20px'
-          }}>
-            {searchTypes.map((item) => {
-              const IconComp = item.icon;
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => onExecuteSearch && onExecuteSearch({ query: item.sample, searchType: item.id, searchMode: 'contains' })}
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.94)',
-                    backdropFilter: 'blur(16px)',
-                    WebkitBackdropFilter: 'blur(16px)',
-                    borderRadius: '24px',
-                    padding: '30px 24px',
-                    border: '1.5px solid #e1ecf9',
-                    boxShadow: '0 10px 30px rgba(15, 90, 162, 0.08)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    minHeight: '350px',
-                    cursor: 'pointer',
-                    position: 'relative',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-8px)';
-                    e.currentTarget.style.borderColor = '#0f5aa2';
-                    e.currentTarget.style.boxShadow = '0 20px 48px rgba(15, 90, 162, 0.18)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = '#e1ecf9';
-                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(15, 90, 162, 0.08)';
-                  }}
-                >
-                  <div>
-                    {/* Top Row: Icon Box + Step Index Badge */}
-                    <div style={{
+              {/* Main Heading with Blue Accent */}
+              <h2 style={{
+                fontSize: 'clamp(2.3rem, 3.8vw, 3.2rem)',
+                fontWeight: '900',
+                letterSpacing: '-0.035em',
+                color: '#0d1d2e',
+                marginBottom: '14px',
+                lineHeight: 1.15
+              }}>
+                What Can You <span style={{ color: '#0f5aa2' }}>Search?</span>
+              </h2>
+
+              {/* Description */}
+              <p style={{
+                fontSize: '1.05rem',
+                color: '#556980',
+                lineHeight: 1.65,
+                margin: 0,
+                maxWidth: '560px'
+              }}>
+                Search using the trademark information you already have across millions of structured registry records.
+              </p>
+            </div>
+
+            {/* 4 Horizontal Stacked Cards with Left Number Badges */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {searchTypes.map((item) => {
+                const IconComp = item.icon;
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => onExecuteSearch && onExecuteSearch({ query: item.sample, searchType: item.id, searchMode: 'contains' })}
+                    style={{
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: '22px'
-                    }}>
-                      <div style={{
-                        width: '52px',
-                        height: '52px',
-                        borderRadius: '50%',
-                        background: '#f0f6fc',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        border: '1px solid #e1ecf9',
-                        boxShadow: '0 4px 12px rgba(15, 90, 162, 0.06)'
-                      }}>
-                        <IconComp size={24} color="#0f5aa2" />
-                      </div>
-
-                      <span style={{
-                        fontSize: '0.82rem',
-                        fontWeight: '800',
-                        color: '#0f5aa2',
-                        background: '#f0f6fc',
-                        padding: '4px 12px',
-                        borderRadius: '12px',
-                        border: '1px solid #e1ecf9'
-                      }}>
-                        {item.index}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 style={{
-                      fontSize: '1.2rem',
-                      fontWeight: '800',
-                      color: '#0d1d2e',
-                      marginBottom: '10px',
-                      lineHeight: 1.25
-                    }}>
-                      {item.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p style={{
-                      fontSize: '0.9rem',
-                      color: '#687d94',
-                      lineHeight: 1.6,
-                      margin: '0 0 24px 0'
-                    }}>
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  {/* Bottom Footer Action */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '10px',
-                    marginTop: 'auto',
-                    paddingTop: '16px',
-                    borderTop: '1px solid rgba(225, 236, 249, 0.6)'
-                  }}>
+                      gap: '16px',
+                      cursor: 'pointer',
+                      transition: 'transform 0.25s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(6px)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateX(0)'}
+                  >
+                    
+                    {/* Left Circular Number Badge (01, 02, 03, 04) */}
                     <div style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      fontSize: '0.82rem',
-                      fontWeight: '700',
-                      color: '#0f5aa2',
-                      background: '#f0f6fc',
-                      padding: '7px 12px',
-                      borderRadius: '10px',
-                      border: '1px solid rgba(15, 90, 162, 0.12)',
-                      flex: 1,
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      textOverflow: 'ellipsis'
-                    }}>
-                      <Search size={13} color="#0f5aa2" style={{ flexShrink: 0 }} />
-                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>e.g. {item.sample}</span>
-                    </div>
-
-                    <div style={{
-                      width: '36px',
-                      height: '36px',
+                      width: '38px',
+                      height: '38px',
                       borderRadius: '50%',
                       background: '#0f5aa2',
                       color: '#ffffff',
+                      fontSize: '0.82rem',
+                      fontWeight: '800',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
-                      boxShadow: '0 3px 10px rgba(15, 90, 162, 0.28)'
+                      boxShadow: '0 3px 10px rgba(15, 90, 162, 0.25)'
                     }}>
-                      <ArrowRight size={16} />
+                      {item.index}
                     </div>
-                  </div>
 
-                </div>
-              );
-            })}
+                    {/* Main Card Box */}
+                    <div style={{
+                      flex: 1,
+                      background: '#ffffff',
+                      borderRadius: '18px',
+                      padding: '16px 20px',
+                      border: '1px solid #e1ecf9',
+                      boxShadow: '0 4px 18px rgba(15, 90, 162, 0.05)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '16px',
+                      transition: 'all 0.25s ease'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                        
+                        {/* Icon Box */}
+                        <div style={{
+                          width: '44px',
+                          height: '44px',
+                          borderRadius: '12px',
+                          background: '#f0f6fc',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                          border: '1px solid #e1ecf9'
+                        }}>
+                          <IconComp size={22} color="#0f5aa2" />
+                        </div>
+
+                        {/* Title & Description */}
+                        <div>
+                          <h3 style={{
+                            fontSize: '1.04rem',
+                            fontWeight: '800',
+                            color: '#0d1d2e',
+                            marginBottom: '3px',
+                            lineHeight: 1.25
+                          }}>
+                            {item.title}
+                          </h3>
+                          <p style={{
+                            fontSize: '0.82rem',
+                            color: '#687d94',
+                            lineHeight: 1.5,
+                            margin: 0
+                          }}>
+                            {item.desc}
+                          </p>
+                        </div>
+
+                      </div>
+
+                      {/* Right Circular Blue Arrow Button */}
+                      <div style={{
+                        width: '34px',
+                        height: '34px',
+                        borderRadius: '50%',
+                        background: '#0f5aa2',
+                        color: '#ffffff',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        boxShadow: '0 2px 8px rgba(15, 90, 162, 0.25)'
+                      }}>
+                        <ArrowRight size={16} />
+                      </div>
+
+                    </div>
+
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+
+          {/* =========================================================================
+              RIGHT COLUMN: 3D TM DOCUMENT & MAGNIFYING GLASS ILLUSTRATION
+             ========================================================================= */}
+          <div style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '440px'
+          }}>
+            
+            {/* Soft Ambient Radial Glow */}
+            <div style={{
+              position: 'absolute',
+              inset: '-20px',
+              background: 'radial-gradient(ellipse at center, rgba(225, 236, 249, 0.75) 0%, rgba(240, 246, 252, 0.35) 60%, transparent 80%)',
+              pointerEvents: 'none',
+              zIndex: 1
+            }} />
+
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '560px',
+              zIndex: 2,
+              animation: 'subtleSearchFloat 5s ease-in-out infinite'
+            }}>
+              <img
+                src={rightIllustration}
+                alt="Search Identifiers 3D Document Illustration"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                  mixBlendMode: 'multiply'
+                }}
+              />
+            </div>
+
           </div>
 
         </div>
@@ -274,10 +291,10 @@ export default function SearchTypesSection({ onExecuteSearch }) {
       </div>
 
       <style>{`
-        @media (max-width: 1040px) {
-          .search-identifiers-grid {
-            grid-template-columns: 1fr !important;
-          }
+        @keyframes subtleSearchFloat {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-7px); }
+          100% { transform: translateY(0px); }
         }
       `}</style>
     </section>

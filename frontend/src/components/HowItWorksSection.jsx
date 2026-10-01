@@ -1,115 +1,264 @@
 import React from 'react';
-import { Search, Compass, FileCheck2, ArrowRight } from 'lucide-react';
+import { Search, Compass, FileText, Sparkles, ArrowRight } from 'lucide-react';
 
 export default function HowItWorksSection({ onNavigateSearch }) {
   const steps = [
     {
-      step: "01",
-      title: "Search",
-      desc: "Enter a trademark name, application number, trademark number, owner, or other available information in the search bar.",
-      icon: Search
+      step: '01',
+      title: 'Search',
+      desc: 'Enter a trademark name, application number, trademark number, owner, or other available information in the search bar.',
+      icon: Search,
+      primaryColor: '#0f5aa2',
+      badgeBg: '#0f5aa2',
+      arcColor: 'rgba(15, 90, 162, 0.25)',
+      haloBg: 'radial-gradient(circle, rgba(225, 236, 249, 0.8) 0%, rgba(240, 246, 252, 0.4) 60%, transparent 75%)',
+      circleBg: '#f0f6fc',
+      barColor: '#0f5aa2'
     },
     {
-      step: "02",
-      title: "Explore",
-      desc: "Browse matching trademark records and narrow your results using intuitive filters, search modes, and sorting options.",
-      icon: Compass
+      step: '02',
+      title: 'Explore',
+      desc: 'Browse matching trademark records and narrow your results using intuitive filters, search modes, and sorting options.',
+      icon: Compass,
+      primaryColor: '#7c3aed',
+      badgeBg: '#7c3aed',
+      arcColor: 'rgba(124, 58, 237, 0.25)',
+      haloBg: 'radial-gradient(circle, rgba(243, 232, 255, 0.8) 0%, rgba(250, 245, 255, 0.4) 60%, transparent 75%)',
+      circleBg: '#faf5ff',
+      barColor: '#7c3aed'
     },
     {
-      step: "03",
-      title: "View Details",
-      desc: "Select any trademark to view the complete structured record, ownership timeline, classification details, and legal validity.",
-      icon: FileCheck2
+      step: '03',
+      title: 'View Details',
+      desc: 'Select any trademark to view the complete structured record, ownership timeline, classification details, and legal validity.',
+      icon: FileText,
+      primaryColor: '#059669',
+      badgeBg: '#059669',
+      arcColor: 'rgba(5, 150, 105, 0.25)',
+      haloBg: 'radial-gradient(circle, rgba(209, 250, 229, 0.8) 0%, rgba(236, 253, 245, 0.4) 60%, transparent 75%)',
+      circleBg: '#ecfdf5',
+      barColor: '#059669'
     }
   ];
 
   return (
-    <section style={{ padding: '80px 0', borderBottom: '1px solid var(--border-subtle)', background: '#ffffff' }}>
-      <div className="container">
+    <section style={{
+      paddingTop: '92px',
+      paddingBottom: '100px',
+      background: 'linear-gradient(180deg, #ffffff 0%, #f8fbfe 100%)',
+      borderBottom: '1px solid #e1ecf9',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
         
-        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px auto' }}>
-          <div className="badge badge-blue" style={{ marginBottom: '12px' }}>
-            Simple 3-Step Journey
+        {/* =========================================================================
+            CENTERED HEADER
+           ========================================================================= */}
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 64px auto' }}>
+          
+          {/* Badge */}
+          <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
+            <span style={{
+              display: 'inline-block',
+              padding: '6px 18px',
+              borderRadius: '20px',
+              background: '#e1ecf9',
+              color: '#0f5aa2',
+              fontSize: '0.86rem',
+              fontWeight: '700',
+              letterSpacing: '-0.01em'
+            }}>
+              Simple 3-Step Journey
+            </span>
           </div>
-          <h2 style={{ fontSize: '2.4rem', fontWeight: '800', letterSpacing: '-0.02em', marginBottom: '12px', color: 'var(--text-title)' }}>
+
+          {/* Heading */}
+          <h2 style={{
+            fontSize: 'clamp(2.3rem, 4vw, 3.4rem)',
+            fontWeight: '900',
+            letterSpacing: '-0.035em',
+            color: '#0d1d2e',
+            marginBottom: '14px',
+            lineHeight: 1.15
+          }}>
             How Wyt Works
           </h2>
-          <p style={{ fontSize: '1.08rem', color: 'var(--text-muted)' }}>
+
+          {/* Description */}
+          <p style={{
+            fontSize: '1.1rem',
+            color: '#556980',
+            lineHeight: 1.6,
+            margin: 0
+          }}>
             Discover how easy it is to research and verify trademark records in seconds.
           </p>
         </div>
 
-        <div className="grid-3" style={{ marginBottom: '40px' }}>
-          {steps.map((s, idx) => {
-            const Icon = s.icon;
+        {/* =========================================================================
+            3-STEP HORIZONTAL CONNECTED TIMELINE
+           ========================================================================= */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '36px',
+          position: 'relative'
+        }}>
+          {steps.map((item, idx) => {
+            const IconComp = item.icon;
             return (
               <div
-                key={idx}
-                className="card-clean"
+                key={item.step}
                 style={{
-                  padding: '36px 28px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
                   position: 'relative',
-                  background: '#ffffff',
-                  border: '1px solid var(--border-subtle)'
+                  padding: '0 12px'
                 }}
               >
-                <div style={{
-                  position: 'absolute',
-                  top: '24px',
-                  right: '24px',
-                  fontSize: '2.4rem',
-                  fontWeight: '900',
-                  color: 'rgba(15, 90, 162, 0.12)',
-                  fontFamily: 'JetBrains Mono',
-                  lineHeight: 1
-                }}>
-                  {s.step}
-                </div>
+                
+                {/* Horizontal Dotted Connector Line (Between Step 1-2 and 2-3) */}
+                {idx < 2 && (
+                  <div className="hide-mobile" style={{
+                    position: 'absolute',
+                    top: '64px',
+                    left: 'calc(50% + 64px)',
+                    width: 'calc(100% - 128px)',
+                    height: '2px',
+                    borderTop: `2px dashed ${item.primaryColor}`,
+                    opacity: 0.35,
+                    zIndex: 1
+                  }}>
+                    {/* Glowing Connector Node Dot */}
+                    <div style={{
+                      position: 'absolute',
+                      right: '-4px',
+                      top: '-4px',
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: item.primaryColor,
+                      boxShadow: `0 0 8px ${item.primaryColor}`
+                    }} />
+                  </div>
+                )}
 
+                {/* Top Interactive Circle Graphic Container */}
                 <div style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'var(--brand-light)',
+                  position: 'relative',
+                  width: '128px',
+                  height: '128px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--brand-primary)',
-                  marginBottom: '20px'
+                  marginBottom: '28px',
+                  zIndex: 2
                 }}>
-                  <Icon size={24} />
+                  
+                  {/* Outer Semi-Circular Arc */}
+                  <svg
+                    width="128"
+                    height="128"
+                    viewBox="0 0 128 128"
+                    fill="none"
+                    style={{ position: 'absolute', inset: 0, overflow: 'visible' }}
+                  >
+                    <path
+                      d="M 16 64 A 48 48 0 0 1 112 64"
+                      stroke={item.arcColor}
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+
+                  {/* Top Step Number Pill Badge */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '4px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: item.badgeBg,
+                    color: '#ffffff',
+                    fontSize: '0.74rem',
+                    fontWeight: '800',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                    zIndex: 3
+                  }}>
+                    {item.step}
+                  </div>
+
+                  {/* Ambient Radiant Halo */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: '-8px',
+                    borderRadius: '50%',
+                    background: item.haloBg,
+                    zIndex: 1
+                  }} />
+
+                  {/* Center Rounded Circle with Icon */}
+                  <div style={{
+                    position: 'relative',
+                    width: '84px',
+                    height: '84px',
+                    borderRadius: '50%',
+                    background: '#ffffff',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: `1.5px solid ${item.arcColor}`,
+                    boxShadow: '0 8px 24px rgba(15, 90, 162, 0.08)',
+                    zIndex: 2,
+                    transition: 'transform 0.3s ease'
+                  }}>
+                    <IconComp size={34} color={item.primaryColor} />
+                  </div>
+
                 </div>
 
-                <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-title)', marginBottom: '12px' }}>
-                  Step {s.step} – {s.title}
+                {/* Step Title */}
+                <h3 style={{
+                  fontSize: '1.45rem',
+                  fontWeight: '800',
+                  color: '#0d1d2e',
+                  marginBottom: '12px',
+                  letterSpacing: '-0.02em'
+                }}>
+                  {item.title}
                 </h3>
 
-                <p style={{ fontSize: '0.94rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-                  {s.desc}
+                {/* Step Description */}
+                <p style={{
+                  fontSize: '0.96rem',
+                  color: '#556980',
+                  lineHeight: 1.68,
+                  marginBottom: '24px',
+                  maxWidth: '340px'
+                }}>
+                  {item.desc}
                 </p>
+
+                {/* Bottom Color-Coded Accent Line */}
+                <div style={{
+                  width: '48px',
+                  height: '3.5px',
+                  borderRadius: '3px',
+                  background: item.barColor,
+                  marginTop: 'auto'
+                }} />
+
               </div>
             );
           })}
-        </div>
-
-        {/* Visual Workflow Ribbon */}
-        <div style={{
-          background: 'var(--brand-light)',
-          border: '1px solid rgba(15, 90, 162, 0.2)',
-          borderRadius: '14px',
-          padding: '20px 32px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '24px',
-          flexWrap: 'wrap',
-          textAlign: 'center'
-        }}>
-          <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--brand-primary)' }}>Search</span>
-          <ArrowRight size={18} color="var(--brand-primary)" />
-          <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--brand-primary)' }}>Explore</span>
-          <ArrowRight size={18} color="var(--brand-primary)" />
-          <span style={{ fontSize: '1rem', fontWeight: '800', color: 'var(--brand-primary)' }}>View Details</span>
         </div>
 
       </div>

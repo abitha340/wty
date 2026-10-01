@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, BookOpen, ArrowRight, Sparkles } from 'lucide-react';
+import { Compass, BookOpen, ArrowRight, Sparkles, Globe, ShieldCheck, Search, FileText } from 'lucide-react';
 import heroGlobe from '../assets/hero_globe.png';
 
 export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
@@ -9,7 +9,7 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
       overflow: 'hidden',
       background: '#ffffff',
       paddingTop: '64px',
-      paddingBottom: '80px',
+      paddingBottom: '84px',
       borderBottom: '1px solid #e1ecf9'
     }}>
       <div className="container" style={{
@@ -134,24 +134,25 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
         </div>
 
         {/* =========================================================================
-            RIGHT COLUMN: The Exact hero_globe.png Visual Asset
+            RIGHT COLUMN: Globe with High-Definition Floating Text Cards
            ========================================================================= */}
         <div style={{
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          minHeight: '380px'
+          minHeight: '440px'
         }}>
+          
+          {/* Base Globe Visual */}
           <div style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '620px',
-            transition: 'transform 0.3s ease'
+            maxWidth: '600px'
           }}>
             <img
               src={heroGlobe}
-              alt="Global Trademark Intelligence Visualization"
+              alt="Global Trademark Intelligence"
               style={{
                 width: '100%',
                 height: 'auto',
@@ -159,7 +160,195 @@ export default function HeroSection({ onExecuteSearch, onNavigateTab }) {
                 objectFit: 'contain'
               }}
             />
+
+            {/* Overlaid Vector Cards For Maximum Sharpness and Hover Effects */}
+            
+            {/* 1. Global Coverage (Top Right) */}
+            <div style={{
+              position: 'absolute',
+              top: '6%',
+              right: '4%',
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '12px 18px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              boxShadow: '0 10px 28px rgba(15, 90, 162, 0.12)',
+              border: '1px solid #e1ecf9',
+              zIndex: 10,
+              cursor: 'default',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(15, 90, 162, 0.18)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 28px rgba(15, 90, 162, 0.12)';
+            }}>
+              <div style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '8px',
+                background: '#f0f6fc',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Globe size={22} color="#0f5aa2" />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.95rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+                  Global Coverage
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
+                  190+ Countries
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Verified Data (Middle Left) */}
+            <div style={{
+              position: 'absolute',
+              top: '38%',
+              left: '6%',
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '12px 18px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              boxShadow: '0 10px 28px rgba(15, 90, 162, 0.12)',
+              border: '1px solid #e1ecf9',
+              zIndex: 10,
+              cursor: 'default',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(15, 90, 162, 0.18)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 28px rgba(15, 90, 162, 0.12)';
+            }}>
+              <div style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '8px',
+                background: '#0f5aa2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <ShieldCheck size={22} color="#ffffff" />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.95rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+                  Verified Data
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
+                  Trusted Sources
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Easy Search (Middle Right) */}
+            <div style={{
+              position: 'absolute',
+              top: '46%',
+              right: '2%',
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '12px 18px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              boxShadow: '0 10px 28px rgba(15, 90, 162, 0.12)',
+              border: '1px solid #e1ecf9',
+              zIndex: 10,
+              cursor: 'default',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(15, 90, 162, 0.18)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 28px rgba(15, 90, 162, 0.12)';
+            }}>
+              <div style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '8px',
+                background: '#f0f6fc',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Search size={22} color="#0f5aa2" />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.95rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+                  Easy Search
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
+                  Find & Explore Fast
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Track Applications (Bottom Center) */}
+            <div style={{
+              position: 'absolute',
+              bottom: '4%',
+              left: '26%',
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '12px 18px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              boxShadow: '0 10px 28px rgba(15, 90, 162, 0.12)',
+              border: '1px solid #e1ecf9',
+              zIndex: 10,
+              cursor: 'default',
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 16px 36px rgba(15, 90, 162, 0.18)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 10px 28px rgba(15, 90, 162, 0.12)';
+            }}>
+              <div style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '8px',
+                background: '#0f5aa2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <FileText size={22} color="#ffffff" />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.95rem', fontWeight: '800', color: '#0d1d2e', lineHeight: 1.2 }}>
+                  Track Applications
+                </div>
+                <div style={{ fontSize: '0.78rem', color: '#687d94', fontWeight: '600', marginTop: '2px' }}>
+                  Stay Updated
+                </div>
+              </div>
+            </div>
+
           </div>
+
         </div>
 
       </div>

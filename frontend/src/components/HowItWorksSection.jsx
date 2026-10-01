@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Compass, FileText, Sparkles, ArrowRight } from 'lucide-react';
+import { Search, Compass, FileText } from 'lucide-react';
 
 export default function HowItWorksSection({ onNavigateSearch }) {
   const steps = [
@@ -10,8 +10,8 @@ export default function HowItWorksSection({ onNavigateSearch }) {
       icon: Search,
       primaryColor: '#0f5aa2',
       badgeBg: '#0f5aa2',
-      arcColor: 'rgba(15, 90, 162, 0.25)',
-      haloBg: 'radial-gradient(circle, rgba(225, 236, 249, 0.8) 0%, rgba(240, 246, 252, 0.4) 60%, transparent 75%)',
+      arcColor: 'rgba(15, 90, 162, 0.4)',
+      haloBg: 'radial-gradient(circle, rgba(225, 236, 249, 0.85) 0%, rgba(240, 246, 252, 0.4) 65%, transparent 75%)',
       circleBg: '#f0f6fc',
       barColor: '#0f5aa2'
     },
@@ -22,8 +22,8 @@ export default function HowItWorksSection({ onNavigateSearch }) {
       icon: Compass,
       primaryColor: '#7c3aed',
       badgeBg: '#7c3aed',
-      arcColor: 'rgba(124, 58, 237, 0.25)',
-      haloBg: 'radial-gradient(circle, rgba(243, 232, 255, 0.8) 0%, rgba(250, 245, 255, 0.4) 60%, transparent 75%)',
+      arcColor: 'rgba(124, 58, 237, 0.4)',
+      haloBg: 'radial-gradient(circle, rgba(243, 232, 255, 0.85) 0%, rgba(250, 245, 255, 0.4) 65%, transparent 75%)',
       circleBg: '#faf5ff',
       barColor: '#7c3aed'
     },
@@ -34,8 +34,8 @@ export default function HowItWorksSection({ onNavigateSearch }) {
       icon: FileText,
       primaryColor: '#059669',
       badgeBg: '#059669',
-      arcColor: 'rgba(5, 150, 105, 0.25)',
-      haloBg: 'radial-gradient(circle, rgba(209, 250, 229, 0.8) 0%, rgba(236, 253, 245, 0.4) 60%, transparent 75%)',
+      arcColor: 'rgba(5, 150, 105, 0.4)',
+      haloBg: 'radial-gradient(circle, rgba(209, 250, 229, 0.85) 0%, rgba(236, 253, 245, 0.4) 65%, transparent 75%)',
       circleBg: '#ecfdf5',
       barColor: '#059669'
     }
@@ -50,12 +50,12 @@ export default function HowItWorksSection({ onNavigateSearch }) {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+      <div className="container" style={{ maxWidth: '1260px', margin: '0 auto', padding: '0 24px' }}>
         
         {/* =========================================================================
             CENTERED HEADER
            ========================================================================= */}
-        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 64px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 68px auto' }}>
           
           {/* Badge */}
           <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
@@ -97,12 +97,12 @@ export default function HowItWorksSection({ onNavigateSearch }) {
         </div>
 
         {/* =========================================================================
-            3-STEP HORIZONTAL CONNECTED TIMELINE
+            3-STEP HORIZONTAL CONNECTED TIMELINE WITH ENLARGED UPPER ARCS
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '36px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))',
+          gap: '40px',
           position: 'relative'
         }}>
           {steps.map((item, idx) => {
@@ -116,17 +116,17 @@ export default function HowItWorksSection({ onNavigateSearch }) {
                   alignItems: 'center',
                   textAlign: 'center',
                   position: 'relative',
-                  padding: '0 12px'
+                  padding: '0 10px'
                 }}
               >
                 
-                {/* Horizontal Dotted Connector Line (Between Step 1-2 and 2-3) */}
+                {/* Horizontal Dotted Connector Line */}
                 {idx < 2 && (
                   <div className="hide-mobile" style={{
                     position: 'absolute',
-                    top: '64px',
-                    left: 'calc(50% + 64px)',
-                    width: 'calc(100% - 128px)',
+                    top: '84px',
+                    left: 'calc(50% + 80px)',
+                    width: 'calc(100% - 160px)',
                     height: '2px',
                     borderTop: `2px dashed ${item.primaryColor}`,
                     opacity: 0.35,
@@ -137,20 +137,20 @@ export default function HowItWorksSection({ onNavigateSearch }) {
                       position: 'absolute',
                       right: '-4px',
                       top: '-4px',
-                      width: '8px',
-                      height: '8px',
+                      width: '9px',
+                      height: '9px',
                       borderRadius: '50%',
                       background: item.primaryColor,
-                      boxShadow: `0 0 8px ${item.primaryColor}`
+                      boxShadow: `0 0 10px ${item.primaryColor}`
                     }} />
                   </div>
                 )}
 
-                {/* Top Interactive Circle Graphic Container */}
+                {/* Top Interactive Circle Assembly with Enlarged Upper Curve */}
                 <div style={{
                   position: 'relative',
-                  width: '128px',
-                  height: '128px',
+                  width: '168px',
+                  height: '168px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -158,40 +158,41 @@ export default function HowItWorksSection({ onNavigateSearch }) {
                   zIndex: 2
                 }}>
                   
-                  {/* Outer Semi-Circular Arc */}
+                  {/* Enlarged Outer Semi-Circular Arc (Bigger Radius & Prominence) */}
                   <svg
-                    width="128"
-                    height="128"
-                    viewBox="0 0 128 128"
+                    width="168"
+                    height="168"
+                    viewBox="0 0 168 168"
                     fill="none"
                     style={{ position: 'absolute', inset: 0, overflow: 'visible' }}
                   >
                     <path
-                      d="M 16 64 A 48 48 0 0 1 112 64"
+                      d="M 14 96 A 70 70 0 0 1 154 96"
                       stroke={item.arcColor}
-                      strokeWidth="2.5"
+                      strokeWidth="3"
                       strokeLinecap="round"
                     />
                   </svg>
 
-                  {/* Top Step Number Pill Badge */}
+                  {/* Top Step Number Pill Badge positioned atop the arch */}
                   <div style={{
                     position: 'absolute',
-                    top: '4px',
+                    top: '12px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '26px',
-                    height: '26px',
+                    width: '30px',
+                    height: '30px',
                     borderRadius: '50%',
                     background: item.badgeBg,
                     color: '#ffffff',
-                    fontSize: '0.74rem',
+                    fontSize: '0.8rem',
                     fontWeight: '800',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-                    zIndex: 3
+                    boxShadow: '0 3px 10px rgba(0, 0, 0, 0.16)',
+                    zIndex: 4,
+                    border: '2px solid #ffffff'
                   }}>
                     {item.step}
                   </div>
@@ -199,7 +200,8 @@ export default function HowItWorksSection({ onNavigateSearch }) {
                   {/* Ambient Radiant Halo */}
                   <div style={{
                     position: 'absolute',
-                    inset: '-8px',
+                    width: '126px',
+                    height: '126px',
                     borderRadius: '50%',
                     background: item.haloBg,
                     zIndex: 1
@@ -208,26 +210,34 @@ export default function HowItWorksSection({ onNavigateSearch }) {
                   {/* Center Rounded Circle with Icon */}
                   <div style={{
                     position: 'relative',
-                    width: '84px',
-                    height: '84px',
+                    width: '94px',
+                    height: '94px',
                     borderRadius: '50%',
                     background: '#ffffff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    border: `1.5px solid ${item.arcColor}`,
-                    boxShadow: '0 8px 24px rgba(15, 90, 162, 0.08)',
+                    border: `2px solid ${item.arcColor}`,
+                    boxShadow: '0 10px 28px rgba(15, 90, 162, 0.1)',
                     zIndex: 2,
-                    transition: 'transform 0.3s ease'
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.06)';
+                    e.currentTarget.style.boxShadow = '0 14px 36px rgba(15, 90, 162, 0.18)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.0)';
+                    e.currentTarget.style.boxShadow = '0 10px 28px rgba(15, 90, 162, 0.1)';
                   }}>
-                    <IconComp size={34} color={item.primaryColor} />
+                    <IconComp size={38} color={item.primaryColor} />
                   </div>
 
                 </div>
 
                 {/* Step Title */}
                 <h3 style={{
-                  fontSize: '1.45rem',
+                  fontSize: '1.48rem',
                   fontWeight: '800',
                   color: '#0d1d2e',
                   marginBottom: '12px',
@@ -249,8 +259,8 @@ export default function HowItWorksSection({ onNavigateSearch }) {
 
                 {/* Bottom Color-Coded Accent Line */}
                 <div style={{
-                  width: '48px',
-                  height: '3.5px',
+                  width: '52px',
+                  height: '4px',
                   borderRadius: '3px',
                   background: item.barColor,
                   marginTop: 'auto'

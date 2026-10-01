@@ -59,7 +59,7 @@ export default function App() {
         {activeTab === 'landing' && (
           <>
             {/* Section 4: Hero Section with Large Search Component */}
-            <HeroSection onExecuteSearch={handleExecuteSearch} />
+            <HeroSection onExecuteSearch={handleExecuteSearch} onNavigateTab={setActiveTab} />
 
             {/* Section 5: What Can You Search? (4 Cards) */}
             <SearchTypesSection onExecuteSearch={handleExecuteSearch} />

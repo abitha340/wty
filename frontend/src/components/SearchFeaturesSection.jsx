@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Target, AlignLeft, Search, ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import exactAsset from '../assets/match_exact_3d.jpg';
+import startswithAsset from '../assets/match_startswith_3d.jpg';
+import containsAsset from '../assets/match_contains_3d.jpg';
 
 export default function SearchFeaturesSection({ onExecuteSearch }) {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -13,7 +16,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
       exampleValue: '"NIKE"',
       btnText: 'Search with Exact Match',
       sampleQuery: 'NIKE',
-      icon: Target
+      imgAsset: exactAsset
     },
     {
       id: 'startswith',
@@ -23,7 +26,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
       exampleValue: '"NIKE"',
       btnText: 'Search with Starts With',
       sampleQuery: 'NIKE',
-      icon: AlignLeft
+      imgAsset: startswithAsset
     },
     {
       id: 'contains',
@@ -33,7 +36,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
       exampleValue: '"TECH"',
       btnText: 'Search with Contains',
       sampleQuery: 'TECH',
-      icon: Search
+      imgAsset: containsAsset
     }
   ];
 
@@ -93,7 +96,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
         </div>
 
         {/* =========================================================================
-            3-CARD UNIFIED BLUE GRID
+            3-CARD UNIFIED BLUE GRID WITH 3D ASSETS
            ========================================================================= */}
         <div style={{
           display: 'grid',
@@ -101,7 +104,6 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
           gap: '32px'
         }}>
           {modes.map((mode) => {
-            const IconComp = mode.icon;
             const isHovered = hoveredCard === mode.id;
 
             return (
@@ -112,7 +114,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                 style={{
                   background: '#ffffff',
                   borderRadius: '24px',
-                  padding: '40px 32px 32px 32px',
+                  padding: '36px 32px 32px 32px',
                   border: isHovered ? '1.5px solid #083866' : '1.5px solid #e1ecf9',
                   boxShadow: isHovered ? '0 20px 44px rgba(8, 56, 102, 0.16)' : '0 10px 32px rgba(15, 90, 162, 0.06)',
                   display: 'flex',
@@ -126,47 +128,32 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                 }}
               >
                 
-                {/* Floating Soft Ambient Blue Bubbles */}
+                {/* 3D Glassmorphic Icon Asset */}
                 <div style={{
-                  position: 'absolute',
-                  top: '18px',
-                  left: '24px',
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: 'rgba(225, 236, 249, 0.85)',
-                  filter: 'blur(2px)',
-                  pointerEvents: 'none'
-                }} />
-                <div style={{
-                  position: 'absolute',
-                  top: '40px',
-                  right: '28px',
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  background: 'rgba(240, 246, 252, 0.85)',
-                  filter: 'blur(3px)',
-                  pointerEvents: 'none'
-                }} />
-
-                {/* Top Floating 3D Icon Box */}
-                <div style={{
-                  width: '76px',
-                  height: '76px',
-                  borderRadius: '20px',
-                  background: isHovered ? '#f0f6fc' : '#ffffff',
+                  width: '100px',
+                  height: '100px',
+                  borderRadius: '24px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '26px',
-                  border: isHovered ? '1.5px solid #083866' : '1.5px solid #e1ecf9',
-                  boxShadow: isHovered ? '0 8px 24px rgba(8, 56, 102, 0.12)' : '0 8px 24px rgba(15, 90, 162, 0.06)',
+                  marginBottom: '20px',
                   position: 'relative',
                   zIndex: 2,
-                  transition: 'all 0.3s ease'
+                  transition: 'transform 0.3s ease'
                 }}>
-                  <IconComp size={36} color={isHovered ? '#083866' : '#0f5aa2'} />
+                  <img
+                    src={mode.imgAsset}
+                    alt={mode.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      borderRadius: '22px',
+                      mixBlendMode: 'multiply',
+                      transform: isHovered ? 'scale(1.08)' : 'scale(1.0)',
+                      transition: 'transform 0.3s ease'
+                    }}
+                  />
                 </div>
 
                 {/* Card Title */}
@@ -186,7 +173,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                   fontSize: '0.94rem',
                   color: '#556980',
                   lineHeight: 1.65,
-                  marginBottom: '28px',
+                  marginBottom: '26px',
                   maxWidth: '300px'
                 }}>
                   {mode.desc}
@@ -211,7 +198,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                   <span style={{ fontWeight: '800' }}>{mode.exampleValue}</span>
                 </div>
 
-                {/* Bottom Primary Action Button (Blue -> Dark Blue on Hover) */}
+                {/* Bottom Primary Action Button */}
                 <button
                   type="button"
                   onClick={() => onExecuteSearch && onExecuteSearch({ query: mode.sampleQuery, searchType: 'trademark', searchMode: mode.id })}

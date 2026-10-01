@@ -7,10 +7,8 @@ import HowItWorksSection from './components/HowItWorksSection';
 import SearchFeaturesSection from './components/SearchFeaturesSection';
 import FilteringSortingSection from './components/FilteringSortingSection';
 import DatasetSection from './components/DatasetSection';
-import SearchPreviewSection from './components/SearchPreviewSection';
 import UseCasesSection from './components/UseCasesSection';
 import WhyWytSection from './components/WhyWytSection';
-import DocumentationSection from './components/DocumentationSection';
 import FinalCTA from './components/FinalCTA';
 import SearchExplorer from './components/SearchExplorer';
 import UserDocs from './components/UserDocs';
@@ -79,8 +77,6 @@ export default function App() {
             {/* Section 11: Explore Millions of Trademark Records */}
             <DatasetSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
 
-            {/* Section 12: Search Experience Preview */}
-            <SearchPreviewSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
 
             {/* Section 13: Built for Trademark Research (Use Cases) */}
             <UseCasesSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
@@ -89,8 +85,7 @@ export default function App() {
             <WhyWytSection />
 
             {/* Section 15: Need Help Finding Trademark Information? (Documentation) */}
-            <DocumentationSection onNavigateDocs={() => { setActiveTab('docs'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
-
+            
             {/* Section 16: Final Call-to-Action Section */}
             <FinalCTA
               onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })}

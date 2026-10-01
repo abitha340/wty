@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Target, AlignLeft, Search, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function SearchFeaturesSection({ onExecuteSearch }) {
+  const [hoveredCard, setHoveredCard] = useState(null);
+
   const modes = [
     {
       id: 'exact',
@@ -11,15 +13,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
       exampleValue: '"NIKE"',
       btnText: 'Search with Exact Match',
       sampleQuery: 'NIKE',
-      icon: Target,
-      themeColor: '#0f5aa2',
-      lightBg: '#f0f6fc',
-      pillBg: '#e1ecf9',
-      borderAccent: '#d0e2f5',
-      btnGradient: 'linear-gradient(135deg, #0f5aa2 0%, #1572c6 100%)',
-      btnShadow: '0 6px 18px rgba(15, 90, 162, 0.28)',
-      bubble1: 'rgba(225, 236, 249, 0.9)',
-      bubble2: 'rgba(240, 246, 252, 0.9)'
+      icon: Target
     },
     {
       id: 'startswith',
@@ -29,15 +23,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
       exampleValue: '"NIKE"',
       btnText: 'Search with Starts With',
       sampleQuery: 'NIKE',
-      icon: AlignLeft,
-      themeColor: '#7c3aed',
-      lightBg: '#faf5ff',
-      pillBg: '#f3e8ff',
-      borderAccent: '#ebd5ff',
-      btnGradient: 'linear-gradient(135deg, #7c3aed 0%, #9333ea 100%)',
-      btnShadow: '0 6px 18px rgba(124, 58, 237, 0.28)',
-      bubble1: 'rgba(243, 232, 255, 0.9)',
-      bubble2: 'rgba(250, 245, 255, 0.9)'
+      icon: AlignLeft
     },
     {
       id: 'contains',
@@ -47,15 +33,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
       exampleValue: '"TECH"',
       btnText: 'Search with Contains',
       sampleQuery: 'TECH',
-      icon: Search,
-      themeColor: '#059669',
-      lightBg: '#ecfdf5',
-      pillBg: '#d1fae5',
-      borderAccent: '#a7f3d0',
-      btnGradient: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-      btnShadow: '0 6px 18px rgba(5, 150, 105, 0.28)',
-      bubble1: 'rgba(209, 250, 229, 0.9)',
-      bubble2: 'rgba(236, 253, 245, 0.9)'
+      icon: Search
     }
   ];
 
@@ -115,7 +93,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
         </div>
 
         {/* =========================================================================
-            3-CARD GRID (Exact Match, Starts With, Contains)
+            3-CARD UNIFIED BLUE GRID
            ========================================================================= */}
         <div style={{
           display: 'grid',
@@ -124,34 +102,31 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
         }}>
           {modes.map((mode) => {
             const IconComp = mode.icon;
+            const isHovered = hoveredCard === mode.id;
+
             return (
               <div
                 key={mode.id}
+                onMouseEnter={() => setHoveredCard(mode.id)}
+                onMouseLeave={() => setHoveredCard(null)}
                 style={{
                   background: '#ffffff',
                   borderRadius: '24px',
                   padding: '40px 32px 32px 32px',
-                  border: `1.5px solid ${mode.borderAccent}`,
-                  boxShadow: '0 10px 32px rgba(15, 90, 162, 0.06)',
+                  border: isHovered ? '1.5px solid #083866' : '1.5px solid #e1ecf9',
+                  boxShadow: isHovered ? '0 20px 44px rgba(8, 56, 102, 0.16)' : '0 10px 32px rgba(15, 90, 162, 0.06)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   textAlign: 'center',
                   position: 'relative',
                   overflow: 'hidden',
+                  transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                  e.currentTarget.style.boxShadow = '0 20px 44px rgba(15, 90, 162, 0.14)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 32px rgba(15, 90, 162, 0.06)';
                 }}
               >
                 
-                {/* Floating Soft Ambient Bubbles */}
+                {/* Floating Soft Ambient Blue Bubbles */}
                 <div style={{
                   position: 'absolute',
                   top: '18px',
@@ -159,7 +134,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                   width: '24px',
                   height: '24px',
                   borderRadius: '50%',
-                  background: mode.bubble1,
+                  background: 'rgba(225, 236, 249, 0.85)',
                   filter: 'blur(2px)',
                   pointerEvents: 'none'
                 }} />
@@ -170,7 +145,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                   width: '32px',
                   height: '32px',
                   borderRadius: '50%',
-                  background: mode.bubble2,
+                  background: 'rgba(240, 246, 252, 0.85)',
                   filter: 'blur(3px)',
                   pointerEvents: 'none'
                 }} />
@@ -180,27 +155,28 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                   width: '76px',
                   height: '76px',
                   borderRadius: '20px',
-                  background: '#ffffff',
+                  background: isHovered ? '#f0f6fc' : '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '26px',
-                  border: `1.5px solid ${mode.borderAccent}`,
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
+                  border: isHovered ? '1.5px solid #083866' : '1.5px solid #e1ecf9',
+                  boxShadow: isHovered ? '0 8px 24px rgba(8, 56, 102, 0.12)' : '0 8px 24px rgba(15, 90, 162, 0.06)',
                   position: 'relative',
                   zIndex: 2,
-                  transition: 'transform 0.3s ease'
+                  transition: 'all 0.3s ease'
                 }}>
-                  <IconComp size={36} color={mode.themeColor} />
+                  <IconComp size={36} color={isHovered ? '#083866' : '#0f5aa2'} />
                 </div>
 
                 {/* Card Title */}
                 <h3 style={{
                   fontSize: '1.45rem',
                   fontWeight: '900',
-                  color: '#0d1d2e',
+                  color: isHovered ? '#083866' : '#0d1d2e',
                   marginBottom: '12px',
-                  letterSpacing: '-0.02em'
+                  letterSpacing: '-0.02em',
+                  transition: 'color 0.2s ease'
                 }}>
                   {mode.title}
                 </h3>
@@ -221,19 +197,21 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: mode.pillBg,
+                  background: isHovered ? '#e1ecf9' : '#f0f6fc',
                   padding: '8px 20px',
                   borderRadius: '12px',
                   fontSize: '0.92rem',
                   marginBottom: '32px',
-                  color: mode.themeColor,
-                  fontWeight: '600'
+                  color: isHovered ? '#083866' : '#0f5aa2',
+                  border: '1px solid rgba(15, 90, 162, 0.15)',
+                  fontWeight: '600',
+                  transition: 'all 0.2s ease'
                 }}>
                   <span>{mode.exampleLabel}</span>
                   <span style={{ fontWeight: '800' }}>{mode.exampleValue}</span>
                 </div>
 
-                {/* Bottom Primary Action Button */}
+                {/* Bottom Primary Action Button (Blue -> Dark Blue on Hover) */}
                 <button
                   type="button"
                   onClick={() => onExecuteSearch && onExecuteSearch({ query: mode.sampleQuery, searchType: 'trademark', searchMode: mode.id })}
@@ -241,7 +219,7 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                     width: '100%',
                     padding: '14px 20px',
                     borderRadius: '12px',
-                    background: mode.btnGradient,
+                    background: isHovered ? 'linear-gradient(135deg, #083866 0%, #052646 100%)' : 'linear-gradient(135deg, #0f5aa2 0%, #1572c6 100%)',
                     color: '#ffffff',
                     fontSize: '0.96rem',
                     fontWeight: '700',
@@ -251,12 +229,10 @@ export default function SearchFeaturesSection({ onExecuteSearch }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
-                    boxShadow: mode.btnShadow,
+                    boxShadow: isHovered ? '0 8px 22px rgba(8, 56, 102, 0.35)' : '0 6px 18px rgba(15, 90, 162, 0.28)',
                     marginTop: 'auto',
-                    transition: 'transform 0.2s ease, filter 0.2s ease'
+                    transition: 'all 0.25s ease'
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.filter = 'brightness(1.05)'}
-                  onMouseLeave={(e) => e.currentTarget.style.filter = 'brightness(1.0)'}
                 >
                   <span>{mode.btnText}</span>
                   <ArrowRight size={17} />

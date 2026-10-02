@@ -82,15 +82,11 @@ export default function App() {
             <UseCasesSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
 
             {/* Section 14: Trademark Information, All in One Place (Why Choose Wyt) */}
-            <WhyWytSection />
+            <WhyWytSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
 
             {/* Section 15: Need Help Finding Trademark Information? (Documentation) */}
             
-            {/* Section 16: Final Call-to-Action Section */}
-            <FinalCTA
-              onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })}
-              onOpenAuthModal={handleOpenAuthModal}
-            />
+
           </>
         )}
 

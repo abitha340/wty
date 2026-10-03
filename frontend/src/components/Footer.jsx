@@ -1,5 +1,5 @@
 import React from 'react';
-import footerMapTm from '../assets/footer_map_transparent.png';
+import footerTmHologram from '../assets/footer_tm_hologram_3d.png';
 
 export default function Footer({ setActiveTab, onOpenAuthModal }) {
   const handleNav = (id) => {
@@ -9,7 +9,7 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
 
   return (
     <footer style={{
-      background: 'linear-gradient(135deg, #092c53 0%, #0d4680 45%, #08294e 100%)',
+      background: 'linear-gradient(135deg, #092c53 0%, #0d4885 50%, #082a50 100%)',
       color: '#ffffff',
       borderTop: '1px solid rgba(125, 211, 252, 0.25)',
       paddingTop: '64px',
@@ -18,27 +18,27 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
       overflow: 'hidden'
     }}>
       
-      {/* Dynamic Ambient Blue Light Beams */}
+      {/* Ambient Blue Glowing Light Spheres */}
       <div style={{
         position: 'absolute',
         top: '-60px',
-        right: '18%',
-        width: '650px',
-        height: '320px',
+        right: '15%',
+        width: '600px',
+        height: '340px',
         background: 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28) 0%, rgba(15, 90, 162, 0.15) 50%, transparent 75%)',
-        filter: 'blur(45px)',
+        filter: 'blur(50px)',
         pointerEvents: 'none',
         zIndex: 1
       }} />
 
       <div style={{
         position: 'absolute',
-        bottom: '-40px',
-        left: '10%',
-        width: '400px',
-        height: '200px',
-        background: 'radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%)',
-        filter: 'blur(35px)',
+        bottom: '-30px',
+        left: '8%',
+        width: '420px',
+        height: '220px',
+        background: 'radial-gradient(circle, rgba(14, 165, 233, 0.14) 0%, transparent 70%)',
+        filter: 'blur(40px)',
         pointerEvents: 'none',
         zIndex: 1
       }} />
@@ -64,32 +64,31 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
         03
       </div>
 
-      {/* Right Side Seamlessly Blended Dotted World Map & Neon TM Network */}
+      {/* Right Side Seamlessly Blended 3D Trademark Intelligence Hologram */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        width: '52%',
-        maxWidth: '720px',
+        top: '50%',
+        right: '1%',
+        transform: 'translateY(-50%)',
+        width: '46%',
+        maxWidth: '620px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         pointerEvents: 'none',
         zIndex: 1,
         opacity: 0.95
       }}>
         <img
-          src={footerMapTm}
-          alt="Global Trademark Network"
+          src={footerTmHologram}
+          alt="3D Trademark Network Intelligence"
           style={{
-            height: '100%',
             width: '100%',
-            maxHeight: '300px',
+            height: 'auto',
+            maxHeight: '290px',
             objectFit: 'contain',
-            objectPosition: 'right center',
             mixBlendMode: 'screen',
-            filter: 'drop-shadow(0 0 20px rgba(56, 189, 248, 0.35))'
+            filter: 'drop-shadow(0 0 25px rgba(56, 189, 248, 0.4))'
           }}
         />
       </div>
@@ -97,18 +96,18 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
       <div className="container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
         
         {/* =========================================================================
-            MAIN FOOTER GRID: BRAND INFO + VERTICAL DIVIDER + 3 LINK COLUMNS
+            MAIN FOOTER ROW: BRAND INFO + VERTICAL DIVIDER + 3 LINK COLUMNS
            ========================================================================= */}
         <div style={{
           display: 'flex',
           alignItems: 'flex-start',
-          gap: '48px',
+          gap: '44px',
           marginBottom: '44px',
           flexWrap: 'wrap'
         }} className="footer-main-row">
           
           {/* Brand Info Column */}
-          <div style={{ maxWidth: '340px', paddingRight: '32px', borderRight: '1px solid rgba(225, 236, 249, 0.22)' }} className="footer-brand-col">
+          <div style={{ maxWidth: '330px', paddingRight: '30px', borderRight: '1px solid rgba(225, 236, 249, 0.22)' }} className="footer-brand-col">
             
             {/* Logo */}
             <div 
@@ -140,7 +139,7 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
               lineHeight: '1.65',
               color: 'rgba(225, 236, 249, 0.88)',
               marginBottom: '20px',
-              maxWidth: '300px'
+              maxWidth: '290px'
             }}>
               Trademark information. Ready when you need it. Search 20L+ structured records in one place.
             </p>
@@ -291,16 +290,16 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             </div>
           </div>
 
-          {/* Navigation Columns */}
+          {/* Navigation Link Columns */}
           <div style={{
             display: 'flex',
-            gap: '40px',
+            gap: '36px',
             flex: 1,
             flexWrap: 'wrap'
           }}>
             
             {/* Column 1: Product */}
-            <div style={{ minWidth: '135px' }}>
+            <div style={{ minWidth: '130px' }}>
               <h4 style={{ fontSize: '0.96rem', fontWeight: '800', color: '#7dd3fc', marginBottom: '16px', letterSpacing: '0.02em' }}>
                 Product
               </h4>
@@ -339,7 +338,7 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             </div>
 
             {/* Column 2: Company */}
-            <div style={{ minWidth: '135px' }}>
+            <div style={{ minWidth: '130px' }}>
               <h4 style={{ fontSize: '0.96rem', fontWeight: '800', color: '#7dd3fc', marginBottom: '16px', letterSpacing: '0.02em' }}>
                 Company
               </h4>
@@ -378,7 +377,7 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             </div>
 
             {/* Column 3: Account */}
-            <div style={{ minWidth: '115px' }}>
+            <div style={{ minWidth: '110px' }}>
               <h4 style={{ fontSize: '0.96rem', fontWeight: '800', color: '#7dd3fc', marginBottom: '16px', letterSpacing: '0.02em' }}>
                 Account
               </h4>
@@ -422,7 +421,7 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
           flexWrap: 'wrap',
           gap: '16px',
           fontSize: '0.84rem',
-          color: 'rgba(225, 236, 249, 0.72)'
+          color: 'rgba(225, 236, 249, 0.75)'
         }}>
           <div>
             &copy; {new Date().getFullYear()} Wyt. All rights reserved.
@@ -432,7 +431,7 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            color: 'rgba(225, 236, 249, 0.85)',
+            color: 'rgba(225, 236, 249, 0.9)',
             fontWeight: '500'
           }}>
             <span style={{

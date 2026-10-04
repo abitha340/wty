@@ -1,341 +1,398 @@
-import React, { useState } from 'react';
-import { Search, Compass, Scale, ShieldCheck, BarChart3, Layers, ArrowRight, Sparkles, Zap, Star } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import clearanceAsset from '../assets/tm_mode_exact_match_ui.jpg';
+import competitorAsset from '../assets/tm_mode_startswith_ui.jpg';
+import phoneticAsset from '../assets/tm_mode_contains_ui.jpg';
+import duediligenceAsset from '../assets/advanced_filters_ui.png';
+import { ArrowRight, ShieldCheck, TrendingUp, Layers, CheckCircle } from 'lucide-react';
 
-export default function UseCasesSection({ onNavigateSearch }) {
-  const [hoveredId, setHoveredId] = useState(null);
+export default function UseCasesSection({ onNavigateSearch, setActiveTab }) {
+  const [activeStep, setActiveStep] = useState(0);
 
-  const useCases = [
+  const steps = [
     {
-      id: 'search',
-      title: 'Trademark Search',
-      tag: 'Clearance & Discovery',
-      desc: 'Quickly find, verify, and explore trademark records across brand names, registration identifiers, and application numbers.',
-      icon: Search,
-      sampleQuery: 'NIKE',
-      delay: '0s'
+      id: 'clearance',
+      title: 'Brand name clearance & availability',
+      desc: 'Check whether your prospective brand name, slogan, or logo is legally available across 20L+ records with instant risk scoring, identical mark detection, and direct conflicting filing checks.',
+      imgAsset: clearanceAsset,
+      badge: 'Zero False Positives',
+      query: 'NIKE'
     },
     {
-      id: 'brand',
-      title: 'Brand Research',
-      tag: 'Brand Availability',
-      desc: 'Research existing commercial brand names and mark availability before launching new products or entering new markets.',
-      icon: Compass,
-      sampleQuery: 'APPLE',
-      delay: '0.15s'
+      id: 'competitor',
+      title: 'Competitor filings & market intelligence',
+      desc: 'Track new brand registrations, prefix variations, and emerging portfolio expansions across leading enterprises, competitor companies, and emerging market players.',
+      imgAsset: competitorAsset,
+      badge: 'Prefix Autocomplete',
+      query: 'TECH'
     },
     {
-      id: 'legal',
-      title: 'Legal & IP Research',
-      tag: 'IP Due-Diligence',
-      desc: 'Support formal trademark clearance, conflict detection, class overlap analysis, and intellectual property litigation prep.',
-      icon: Scale,
-      sampleQuery: 'GOOGLE',
-      delay: '0.3s'
+      id: 'phonetic',
+      title: 'Compound words & phonetic risk analysis',
+      desc: 'Search within compound words, stylized names, and phonetic sound-alikes to discover partial overlaps and prevent costly opposition disputes before filing.',
+      imgAsset: phoneticAsset,
+      badge: 'Fuzzy Phonetics',
+      query: 'SPARK'
     },
     {
-      id: 'mgmt',
-      title: 'Brand Management',
-      tag: 'Portfolio Monitoring',
-      desc: 'Help businesses monitor their trademark portfolios, renewal milestones, status transitions, and registered international classes.',
-      icon: ShieldCheck,
-      sampleQuery: 'TATA',
-      delay: '0.45s'
-    },
-    {
-      id: 'business',
-      title: 'Business Research',
-      tag: 'Market Intelligence',
-      desc: 'Analyze competitor brand filings and industry expansion trends as part of commercial market research and strategy.',
-      icon: BarChart3,
-      sampleQuery: 'SWIGGY',
-      delay: '0.6s'
-    },
-    {
-      id: 'platforms',
-      title: 'Trademark Platforms',
-      tag: 'Workflows & Integration',
-      desc: 'Incorporate structured trademark intelligence into company incorporation, brand governance, and naming workflows.',
-      icon: Layers,
-      sampleQuery: 'INFOSYS',
-      delay: '0.75s'
+      id: 'duediligence',
+      title: 'Class exploration & statutory due diligence',
+      desc: 'Inspect international Nice classifications (Classes 1 to 45), certified registration certificates, ownership chains of title, and upcoming renewal statutory deadlines.',
+      imgAsset: duediligenceAsset,
+      badge: '45 Nice Classes',
+      query: ''
     }
   ];
 
+  // Scroll listener for sticky scrollytelling
+  useEffect(() => {
+    const handleScroll = () => {
+      const stepElements = steps.map((s) => document.getElementById(`usecase-step-${s.id}`));
+      const triggerPoint = window.innerHeight * 0.45;
+
+      stepElements.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+          setActiveStep(index);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [steps]);
+
+  const scrollToStep = (index) => {
+    setActiveStep(index);
+    const el = document.getElementById(`usecase-step-${steps[index].id}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const handleLearnMore = () => {
+    if (setActiveTab) {
+      setActiveTab('docs');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (onNavigateSearch) {
+      onNavigateSearch('');
+    }
+  };
+
   return (
     <section style={{
+      paddingTop: '96px',
+      paddingBottom: '120px',
+      background: 'rgb(244, 232, 227)',
+      color: '#1a1816',
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '100px',
-      paddingBottom: '116px',
-      background: 'linear-gradient(180deg, #ffffff 0%, #f6faff 50%, #ffffff 100%)',
-      borderBottom: '1px solid #e1ecf9'
+      width: '100%'
     }}>
       
-      {/* Dynamic Animated Ambient Background Orbs */}
-      <div style={{
-        position: 'absolute',
-        top: '10%',
-        left: '10%',
-        width: '400px',
-        height: '400px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(225, 236, 249, 0.8) 0%, rgba(240, 246, 252, 0.2) 60%, transparent 80%)',
-        filter: 'blur(45px)',
-        animation: 'orbFloat1 12s ease-in-out infinite alternate',
-        pointerEvents: 'none',
-        zIndex: 0
-      }} />
-
-      <div style={{
-        position: 'absolute',
-        bottom: '10%',
-        right: '10%',
-        width: '500px',
-        height: '500px',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(209, 232, 255, 0.7) 0%, rgba(240, 246, 252, 0.2) 60%, transparent 80%)',
-        filter: 'blur(50px)',
-        animation: 'orbFloat2 14s ease-in-out infinite alternate',
-        pointerEvents: 'none',
-        zIndex: 0
-      }} />
-
-      <div className="container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{
+        width: '100%',
+        maxWidth: '1440px',
+        margin: '0 auto',
+        padding: '0 clamp(20px, 4vw, 48px)',
+        position: 'relative',
+        zIndex: 1
+      }}>
         
         {/* =========================================================================
-            CENTERED SECTION HEADER WITH ANIMATED BADGE
+            TOP HEADER AREA (MATCHING REFERENCE TWO-LINE TITLE & LEARN MORE LINK)
            ========================================================================= */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 64px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 80px auto' }}>
           
-          {/* Animated Badge */}
-          <div style={{ display: 'inline-flex', marginBottom: '16px' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 22px',
-              borderRadius: '24px',
-              background: '#e1ecf9',
-              color: '#0f5aa2',
-              fontSize: '0.88rem',
-              fontWeight: '700',
-              boxShadow: '0 2px 12px rgba(15, 90, 162, 0.1)',
-              animation: 'badgePulse 3s ease-in-out infinite'
-            }}>
-              <Sparkles size={16} color="#0f5aa2" />
-              <span>Tailored Applications</span>
-            </div>
-          </div>
-
-          {/* Heading with Blue Accent */}
           <h2 style={{
-            fontSize: 'clamp(2.3rem, 4vw, 3.4rem)',
+            fontSize: 'clamp(2.4rem, 4.2vw, 3.8rem)',
             fontWeight: '900',
-            letterSpacing: '-0.035em',
-            color: '#0d1d2e',
-            marginBottom: '14px',
-            lineHeight: 1.15
+            letterSpacing: '-0.04em',
+            color: '#1a1816',
+            marginBottom: '16px',
+            lineHeight: 1.12
           }}>
-            Built for <span style={{ color: '#0f5aa2' }}>Trademark Research</span>
+            Built for Trademark Research
           </h2>
 
-          {/* Subtitle */}
           <p style={{
             fontSize: '1.12rem',
-            color: '#556980',
-            lineHeight: 1.68,
-            margin: 0
+            color: '#5c544e',
+            lineHeight: 1.65,
+            marginBottom: '20px'
           }}>
-            Designed for business owners, legal researchers, brand managers, and companies exploring trademark data.
+            Successful trademark clearance requires deep intelligence across filings, classes, and ownership history. Wyt brings all search engines together to give you total market clarity.
           </p>
+
+          <a
+            onClick={handleLearnMore}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '1rem',
+              fontWeight: '800',
+              color: '#1a1816',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              textUnderlineOffset: '4px',
+              transition: 'color 0.2s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#1a1816'}
+          >
+            <span>Learn More</span>
+            <span style={{ fontSize: '1.1rem' }}>&rarr;</span>
+          </a>
         </div>
 
         {/* =========================================================================
-            6 ANIMATED USE CASE CARDS GRID (3 COLUMNS x 2 ROWS)
+            STICKY SCROLLYTELLING CONTAINER: LEFT = SCROLLABLE STEPS | RIGHT = STICKY LAPTOP
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '28px'
-        }}>
-          {useCases.map((item) => {
-            const IconComp = item.icon;
-            const isHovered = hoveredId === item.id;
+          gridTemplateColumns: 'minmax(320px, 440px) minmax(500px, 1fr)',
+          gap: '56px',
+          alignItems: 'start',
+          position: 'relative'
+        }} className="scrollytelling-split-layout">
+          
+          {/* =======================================================================
+              LEFT COLUMN: SCROLLABLE USE CASE CONTENT BLOCKS
+             ======================================================================= */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {steps.map((step, idx) => {
+              const isActive = activeStep === idx;
 
-            return (
-              <div
-                key={item.id}
-                onMouseEnter={() => setHoveredId(item.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                onClick={() => onNavigateSearch ? onNavigateSearch(item.sampleQuery) : null}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '24px',
-                  padding: '36px 30px',
-                  border: isHovered ? '1.5px solid #0f5aa2' : '1.5px solid #e1ecf9',
-                  boxShadow: isHovered
-                    ? '0 22px 50px rgba(15, 90, 162, 0.16), 0 0 20px rgba(15, 90, 162, 0.08)'
-                    : '0 8px 28px rgba(15, 90, 162, 0.05)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  minHeight: '280px',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  transform: isHovered ? 'translateY(-10px) scale(1.015)' : 'translateY(0) scale(1.0)',
-                  transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-              >
+              return (
+                <div
+                  key={step.id}
+                  id={`usecase-step-${step.id}`}
+                  onClick={() => scrollToStep(idx)}
+                  style={{
+                    paddingTop: '40px',
+                    paddingBottom: '80px',
+                    minHeight: '48vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'opacity 0.35s ease, transform 0.35s ease',
+                    opacity: isActive ? 1 : 0.35,
+                    transform: isActive ? 'translateX(0px)' : 'translateX(-6px)'
+                  }}
+                >
+                  
+                  {/* Step Active Pill Indicator */}
+                  <div style={{ display: 'inline-flex', marginBottom: '14px' }}>
+                    <span style={{
+                      padding: '4px 12px',
+                      borderRadius: '9999px',
+                      background: isActive ? '#083866' : 'rgba(0, 0, 0, 0.08)',
+                      color: isActive ? '#ffffff' : '#5c544e',
+                      fontSize: '0.78rem',
+                      fontWeight: '800',
+                      transition: 'all 0.3s ease'
+                    }}>
+                      {step.badge}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 style={{
+                    fontSize: 'clamp(1.75rem, 2.6vw, 2.3rem)',
+                    fontWeight: '900',
+                    letterSpacing: '-0.035em',
+                    color: '#1a1816',
+                    marginBottom: '14px',
+                    lineHeight: 1.18
+                  }}>
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p style={{
+                    fontSize: '1.02rem',
+                    color: isActive ? '#3d3732' : '#736b64',
+                    lineHeight: 1.65,
+                    margin: 0,
+                    maxWidth: '400px'
+                  }}>
+                    {step.desc}
+                  </p>
+
+                  {/* Interactive Explore Trigger */}
+                  {isActive && (
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (onNavigateSearch) onNavigateSearch(step.query);
+                      }}
+                      style={{
+                        marginTop: '20px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        fontSize: '0.92rem',
+                        fontWeight: '800',
+                        color: '#083866',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <span>Explore this workflow</span>
+                      <ArrowRight size={16} />
+                    </div>
+                  )}
+
+                </div>
+              );
+            })}
+          </div>
+
+          {/* =======================================================================
+              RIGHT COLUMN: STICKY MACBOOK / LAPTOP HARDWARE MOCKUP
+             ======================================================================= */}
+          <div style={{
+            position: 'sticky',
+            top: '120px',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10
+          }} className="sticky-laptop-wrapper">
+            
+            {/* Realistic Laptop Hardware Frame */}
+            <div style={{
+              width: '100%',
+              maxWidth: '820px',
+              position: 'relative'
+            }}>
+              
+              {/* Laptop Screen Top Lid Frame */}
+              <div style={{
+                background: '#0d0e11',
+                borderRadius: '18px 18px 0 0',
+                padding: '12px 12px 10px 12px',
+                boxShadow: '0 24px 60px rgba(0, 0, 0, 0.22)',
+                border: '1.5px solid #22252c',
+                borderBottom: 'none',
+                position: 'relative'
+              }}>
                 
-                {/* Light Shimmer / Streak Effect on Hover */}
-                {isHovered && (
+                {/* Camera dot & sensor notch */}
+                <div style={{
+                  position: 'absolute',
+                  top: '6px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: '#1a1c22',
+                  border: '1px solid #333842'
+                }} />
+
+                {/* Display Screen Viewport */}
+                <div style={{
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  background: '#000000',
+                  aspectRatio: '16 / 10',
+                  position: 'relative',
+                  boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.8)'
+                }}>
+                  
+                  {/* Dynamic Switching Screen Image */}
+                  <img
+                    key={steps[activeStep].id}
+                    src={steps[activeStep].imgAsset}
+                    alt={steps[activeStep].title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      animation: 'laptopScreenFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                    }}
+                  />
+
+                  {/* Subtle Screen Glass Reflection Overlay */}
                   <div style={{
                     position: 'absolute',
                     top: 0,
-                    left: '-100%',
-                    width: '50%',
+                    right: 0,
+                    width: '60%',
                     height: '100%',
-                    background: 'linear-gradient(90deg, transparent, rgba(225, 236, 249, 0.4), transparent)',
-                    transform: 'skewX(-25deg)',
-                    animation: 'cardShine 0.8s ease forwards',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 60%)',
                     pointerEvents: 'none'
                   }} />
-                )}
 
-                {/* Top Row: Animated Dual-Layer Icon on Left & Feature Tag on Right */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: '24px'
-                }}>
-                  
-                  {/* Dual-Layer Rounded Icon Box with Hover Physics */}
-                  <div style={{
-                    width: '58px',
-                    height: '58px',
-                    borderRadius: '18px',
-                    background: isHovered
-                      ? 'linear-gradient(135deg, #0f5aa2 0%, #1572c6 100%)'
-                      : 'linear-gradient(135deg, #f0f6fc 0%, #e1ecf9 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    border: isHovered ? '1.5px solid #0f5aa2' : '1.5px solid #d0e2f5',
-                    boxShadow: isHovered
-                      ? '0 8px 24px rgba(15, 90, 162, 0.35)'
-                      : '0 4px 14px rgba(15, 90, 162, 0.08)',
-                    transform: isHovered ? 'scale(1.1) rotate(-6deg)' : 'scale(1.0) rotate(0deg)',
-                    transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                  }}>
-                    <IconComp size={26} color={isHovered ? '#ffffff' : '#0f5aa2'} />
-                  </div>
-
-                  {/* Feature Tag Pill with Hover Glow */}
-                  <span style={{
-                    fontSize: '0.8rem',
-                    fontWeight: '700',
-                    color: isHovered ? '#0f5aa2' : '#556980',
-                    background: isHovered ? '#e1ecf9' : '#f8fafc',
-                    padding: '6px 14px',
-                    borderRadius: '20px',
-                    border: isHovered ? '1px solid #0f5aa2' : '1px solid #eef2f6',
-                    transform: isHovered ? 'scale(1.04)' : 'scale(1.0)',
-                    transition: 'all 0.25s ease'
-                  }}>
-                    {item.tag}
-                  </span>
-
-                </div>
-
-                {/* Middle Content: Title & Description */}
-                <div>
-                  <h3 style={{
-                    fontSize: '1.26rem',
-                    fontWeight: '800',
-                    color: isHovered ? '#0f5aa2' : '#0d1d2e',
-                    marginBottom: '10px',
-                    lineHeight: 1.25,
-                    transition: 'color 0.25s ease'
-                  }}>
-                    {item.title}
-                  </h3>
-
-                  <p style={{
-                    fontSize: '0.92rem',
-                    color: '#556980',
-                    lineHeight: 1.65,
-                    margin: '0 0 24px 0'
-                  }}>
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* Bottom Row: Animated Action Trigger Bar */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '18px',
-                  borderTop: isHovered ? '1px solid #e1ecf9' : '1px solid #f8fafc',
-                  marginTop: 'auto',
-                  transition: 'border-color 0.25s ease'
-                }}>
-                  <span style={{
-                    fontSize: '0.86rem',
-                    fontWeight: '700',
-                    color: isHovered ? '#0f5aa2' : '#8aa2ba',
-                    transition: 'color 0.25s ease'
-                  }}>
-                    Explore Workflows
-                  </span>
-
-                  <div style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '50%',
-                    background: isHovered ? '#0f5aa2' : '#f0f6fc',
-                    color: isHovered ? '#ffffff' : '#0f5aa2',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: isHovered
-                      ? '0 4px 14px rgba(15, 90, 162, 0.35)'
-                      : '0 2px 6px rgba(15, 90, 162, 0.06)',
-                    transform: isHovered ? 'translateX(5px) scale(1.08)' : 'translateX(0) scale(1.0)',
-                    transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                  }}>
-                    <ArrowRight size={17} />
-                  </div>
                 </div>
 
               </div>
-            );
-          })}
+
+              {/* Laptop Base Bottom Lip */}
+              <div style={{
+                height: '14px',
+                background: 'linear-gradient(180deg, #d1d5db 0%, #9ca3af 60%, #6b7280 100%)',
+                borderRadius: '0 0 14px 14px',
+                position: 'relative',
+                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.35)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {/* Opening Thumb Notch */}
+                <div style={{
+                  width: '64px',
+                  height: '4px',
+                  borderRadius: '0 0 4px 4px',
+                  background: '#4b5563'
+                }} />
+              </div>
+
+              {/* Laptop Shadow on Table Surface */}
+              <div style={{
+                width: '92%',
+                height: '24px',
+                margin: '0 auto',
+                background: 'radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, transparent 75%)',
+                filter: 'blur(8px)',
+                marginTop: '-4px'
+              }} />
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
 
       <style>{`
-        @keyframes orbFloat1 {
-          0% { transform: translate(0px, 0px); }
-          50% { transform: translate(40px, 30px); }
-          100% { transform: translate(-20px, 50px); }
+        @keyframes laptopScreenFade {
+          from {
+            opacity: 0.4;
+            transform: scale(0.985);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
-        @keyframes orbFloat2 {
-          0% { transform: translate(0px, 0px); }
-          50% { transform: translate(-40px, -30px); }
-          100% { transform: translate(30px, -40px); }
-        }
-        @keyframes badgePulse {
-          0% { box-shadow: 0 2px 8px rgba(15, 90, 162, 0.08); }
-          50% { box-shadow: 0 4px 18px rgba(15, 90, 162, 0.22); }
-          100% { box-shadow: 0 2px 8px rgba(15, 90, 162, 0.08); }
-        }
-        @keyframes cardShine {
-          0% { left: -100%; }
-          100% { left: 200%; }
+
+        @media (max-width: 960px) {
+          .scrollytelling-split-layout {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .sticky-laptop-wrapper {
+            position: relative !important;
+            top: 0 !important;
+            margin-bottom: 40px;
+          }
         }
       `}</style>
     </section>

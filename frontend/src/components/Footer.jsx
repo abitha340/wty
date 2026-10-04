@@ -1,150 +1,87 @@
 import React from 'react';
-import footerTmHologram from '../assets/footer_tm_hologram_3d.png';
 
 export default function Footer({ setActiveTab, onOpenAuthModal }) {
   const handleNav = (id) => {
-    setActiveTab(id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (setActiveTab) {
+      setActiveTab(id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
     <footer style={{
-      background: 'linear-gradient(135deg, #092c53 0%, #0d4885 50%, #082a50 100%)',
-      color: '#ffffff',
-      borderTop: '1px solid rgba(125, 211, 252, 0.25)',
+      background: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      color: '#111827',
+      borderTop: '1px solid rgba(0, 0, 0, 0.08)',
       paddingTop: '64px',
-      paddingBottom: '32px',
+      paddingBottom: '36px',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      width: '100%'
     }}>
-      
-      {/* Ambient Blue Glowing Light Spheres */}
-      <div style={{
-        position: 'absolute',
-        top: '-60px',
-        right: '15%',
-        width: '600px',
-        height: '340px',
-        background: 'radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28) 0%, rgba(15, 90, 162, 0.15) 50%, transparent 75%)',
-        filter: 'blur(50px)',
-        pointerEvents: 'none',
+
+      <div className="container" style={{
+        width: '100%',
+        maxWidth: '1440px',
+        margin: '0 auto',
+        padding: '0 clamp(20px, 4vw, 48px)',
+        position: 'relative',
         zIndex: 1
-      }} />
-
-      <div style={{
-        position: 'absolute',
-        bottom: '-30px',
-        left: '8%',
-        width: '420px',
-        height: '220px',
-        background: 'radial-gradient(circle, rgba(14, 165, 233, 0.14) 0%, transparent 70%)',
-        filter: 'blur(40px)',
-        pointerEvents: 'none',
-        zIndex: 1
-      }} />
-
-      {/* Top Left Section Number Pill '03' */}
-      <div style={{
-        position: 'absolute',
-        top: '24px',
-        left: '28px',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '5px 14px',
-        borderRadius: '10px',
-        background: '#0284c7',
-        color: '#ffffff',
-        fontSize: '0.84rem',
-        fontWeight: '800',
-        boxShadow: '0 2px 10px rgba(2, 132, 199, 0.4)',
-        border: '1px solid rgba(225, 236, 249, 0.4)',
-        zIndex: 10
       }}>
-        03
-      </div>
-
-      {/* Right Side Seamlessly Blended 3D Trademark Intelligence Hologram */}
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        right: '1%',
-        transform: 'translateY(-50%)',
-        width: '46%',
-        maxWidth: '620px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        pointerEvents: 'none',
-        zIndex: 1,
-        opacity: 0.95
-      }}>
-        <img
-          src={footerTmHologram}
-          alt="3D Trademark Network Intelligence"
-          style={{
-            width: '100%',
-            height: 'auto',
-            maxHeight: '290px',
-            objectFit: 'contain',
-            mixBlendMode: 'screen',
-            filter: 'drop-shadow(0 0 25px rgba(56, 189, 248, 0.4))'
-          }}
-        />
-      </div>
-
-      <div className="container" style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
         
         {/* =========================================================================
-            MAIN FOOTER ROW: BRAND INFO + VERTICAL DIVIDER + 3 LINK COLUMNS
+            MAIN FOOTER GRID: BRAND INFO + 3 LINK COLUMNS
            ========================================================================= */}
         <div style={{
           display: 'flex',
           alignItems: 'flex-start',
-          gap: '44px',
-          marginBottom: '44px',
+          justifyContent: 'space-between',
+          gap: '48px',
+          marginBottom: '52px',
           flexWrap: 'wrap'
         }} className="footer-main-row">
           
           {/* Brand Info Column */}
-          <div style={{ maxWidth: '330px', paddingRight: '30px', borderRight: '1px solid rgba(225, 236, 249, 0.22)' }} className="footer-brand-col">
+          <div style={{ maxWidth: '380px' }} className="footer-brand-col">
             
             {/* Logo */}
             <div 
               onClick={() => handleNav('landing')}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '14px', cursor: 'pointer' }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px', cursor: 'pointer' }}
             >
               <div style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '8px',
-                background: '#ffffff',
+                width: '36px',
+                height: '36px',
+                borderRadius: '10px',
+                background: '#083866',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontWeight: '900',
-                color: '#083866',
+                color: '#ffffff',
                 fontSize: '1.25rem',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)'
+                boxShadow: '0 2px 8px rgba(8, 56, 102, 0.25)'
               }}>
                 W
               </div>
-              <span style={{ fontSize: '1.45rem', fontWeight: '800', color: '#ffffff', letterSpacing: '-0.02em' }}>
+              <span style={{ fontSize: '1.5rem', fontWeight: '900', color: '#111827', letterSpacing: '-0.02em' }}>
                 Wyt
               </span>
             </div>
 
             <p style={{
-              fontSize: '0.92rem',
-              lineHeight: '1.65',
-              color: 'rgba(225, 236, 249, 0.88)',
-              marginBottom: '20px',
-              maxWidth: '290px'
+              fontSize: '0.96rem',
+              lineHeight: '1.68',
+              color: '#4b5563',
+              marginBottom: '24px',
+              maxWidth: '340px'
             }}>
               Trademark information. Ready when you need it. Search 20L+ structured records in one place.
             </p>
 
-            {/* Social Icons matching uploaded screenshot: LinkedIn, X, YouTube, Instagram */}
+            {/* Social Icons: LinkedIn, X, YouTube, Instagram */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               
               {/* LinkedIn */}
@@ -154,26 +91,26 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 rel="noreferrer"
                 aria-label="LinkedIn"
                 style={{
-                  width: '36px',
-                  height: '36px',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(0, 0, 0, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#111827',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   textDecoration: 'none',
-                  border: '1px solid rgba(255, 255, 255, 0.18)'
+                  border: '1px solid rgba(0, 0, 0, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#083866';
+                  e.currentTarget.style.background = '#083866';
+                  e.currentTarget.style.color = '#ffffff';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.color = '#111827';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -189,26 +126,26 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 rel="noreferrer"
                 aria-label="X"
                 style={{
-                  width: '36px',
-                  height: '36px',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(0, 0, 0, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#111827',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   textDecoration: 'none',
-                  border: '1px solid rgba(255, 255, 255, 0.18)'
+                  border: '1px solid rgba(0, 0, 0, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#083866';
+                  e.currentTarget.style.background = '#083866';
+                  e.currentTarget.style.color = '#ffffff';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.color = '#111827';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -224,26 +161,26 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 rel="noreferrer"
                 aria-label="YouTube"
                 style={{
-                  width: '36px',
-                  height: '36px',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(0, 0, 0, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#111827',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   textDecoration: 'none',
-                  border: '1px solid rgba(255, 255, 255, 0.18)'
+                  border: '1px solid rgba(0, 0, 0, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#083866';
+                  e.currentTarget.style.background = '#083866';
+                  e.currentTarget.style.color = '#ffffff';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.color = '#111827';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -259,26 +196,26 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 rel="noreferrer"
                 aria-label="Instagram"
                 style={{
-                  width: '36px',
-                  height: '36px',
+                  width: '38px',
+                  height: '38px',
                   borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.12)',
+                  background: 'rgba(0, 0, 0, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#111827',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   textDecoration: 'none',
-                  border: '1px solid rgba(255, 255, 255, 0.18)'
+                  border: '1px solid rgba(0, 0, 0, 0.08)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#083866';
+                  e.currentTarget.style.background = '#083866';
+                  e.currentTarget.style.color = '#ffffff';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.background = 'rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.color = '#111827';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
@@ -293,23 +230,22 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
           {/* Navigation Link Columns */}
           <div style={{
             display: 'flex',
-            gap: '36px',
-            flex: 1,
+            gap: '56px',
             flexWrap: 'wrap'
           }}>
             
             {/* Column 1: Product */}
-            <div style={{ minWidth: '130px' }}>
-              <h4 style={{ fontSize: '0.96rem', fontWeight: '800', color: '#7dd3fc', marginBottom: '16px', letterSpacing: '0.02em' }}>
+            <div style={{ minWidth: '140px' }}>
+              <h4 style={{ fontSize: '1rem', fontWeight: '800', color: '#111827', marginBottom: '18px', letterSpacing: '-0.01em' }}>
                 Product
               </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <li>
                   <a 
                     onClick={() => handleNav('search')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     Trademark Search
                   </a>
@@ -317,9 +253,9 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 <li>
                   <a 
                     onClick={() => handleNav('how-it-works')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     How It Works
                   </a>
@@ -327,9 +263,9 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 <li>
                   <a 
                     onClick={() => handleNav('docs')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     Documentation
                   </a>
@@ -338,17 +274,17 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             </div>
 
             {/* Column 2: Company */}
-            <div style={{ minWidth: '130px' }}>
-              <h4 style={{ fontSize: '0.96rem', fontWeight: '800', color: '#7dd3fc', marginBottom: '16px', letterSpacing: '0.02em' }}>
+            <div style={{ minWidth: '140px' }}>
+              <h4 style={{ fontSize: '1rem', fontWeight: '800', color: '#111827', marginBottom: '18px', letterSpacing: '-0.01em' }}>
                 Company
               </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <li>
                   <a 
                     onClick={() => handleNav('landing')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     About Wyt
                   </a>
@@ -356,9 +292,9 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 <li>
                   <a 
                     onClick={() => handleNav('docs')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     Terms of Service
                   </a>
@@ -366,9 +302,9 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 <li>
                   <a 
                     onClick={() => handleNav('docs')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     Privacy Policy
                   </a>
@@ -377,17 +313,17 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             </div>
 
             {/* Column 3: Account */}
-            <div style={{ minWidth: '110px' }}>
-              <h4 style={{ fontSize: '0.96rem', fontWeight: '800', color: '#7dd3fc', marginBottom: '16px', letterSpacing: '0.02em' }}>
+            <div style={{ minWidth: '120px' }}>
+              <h4 style={{ fontSize: '1rem', fontWeight: '800', color: '#111827', marginBottom: '18px', letterSpacing: '-0.01em' }}>
                 Account
               </h4>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <li>
                   <a 
                     onClick={() => onOpenAuthModal && onOpenAuthModal('login')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     Sign In
                   </a>
@@ -395,9 +331,9 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
                 <li>
                   <a 
                     onClick={() => onOpenAuthModal && onOpenAuthModal('signup')}
-                    style={{ cursor: 'pointer', color: '#e2e8f0', textDecoration: 'none', fontSize: '0.91rem', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#38bdf8'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#e2e8f0'}
+                    style={{ cursor: 'pointer', color: '#4b5563', textDecoration: 'none', fontSize: '0.94rem', transition: 'color 0.2s' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#083866'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#4b5563'}
                   >
                     Register
                   </a>
@@ -413,15 +349,15 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             FOOTER BOTTOM BAR: COPYRIGHT & PLATFORM TAGLINE
            ========================================================================= */}
         <div style={{
-          borderTop: '1px solid rgba(225, 236, 249, 0.16)',
-          paddingTop: '20px',
+          borderTop: '1px solid rgba(0, 0, 0, 0.08)',
+          paddingTop: '24px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '16px',
-          fontSize: '0.84rem',
-          color: 'rgba(225, 236, 249, 0.75)'
+          fontSize: '0.88rem',
+          color: '#6b7280'
         }}>
           <div>
             &copy; {new Date().getFullYear()} Wyt. All rights reserved.
@@ -431,15 +367,15 @@ export default function Footer({ setActiveTab, onOpenAuthModal }) {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            color: 'rgba(225, 236, 249, 0.9)',
-            fontWeight: '500'
+            color: '#374151',
+            fontWeight: '600'
           }}>
             <span style={{
               width: '6px',
               height: '6px',
               borderRadius: '50%',
-              background: '#38bdf8',
-              boxShadow: '0 0 8px #38bdf8'
+              background: '#083866',
+              boxShadow: '0 0 6px rgba(8, 56, 102, 0.4)'
             }} />
             Official Trademark Search & Discovery Platform
           </div>

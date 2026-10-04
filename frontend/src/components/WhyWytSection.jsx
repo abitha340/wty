@@ -28,7 +28,7 @@ export default function WhyWytSection({ onNavigateSearch }) {
     <section style={{
       paddingTop: '96px',
       paddingBottom: '112px',
-      background: 'rgb(249, 255, 215)',
+      background: 'rgb(250, 184, 38)',
       color: '#111827',
       position: 'relative',
       overflow: 'hidden',

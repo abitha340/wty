@@ -120,7 +120,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
             <div
               key={card.id}
               style={{
-                background: '#f9ffd7',
+                background: '#ffffff',
                 borderRadius: '26px',
                 border: '1px solid #e2e8f0',
                 boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05)',

@@ -51,7 +51,7 @@ export default function HowItWorksSection({ setActiveTab }) {
               marginBottom: '28px',
               maxWidth: '440px'
             }}>
-              Simple 3-step trademark discovery.
+              How Wyt Works.
             </h2>
 
             <a
@@ -98,83 +98,94 @@ export default function HowItWorksSection({ setActiveTab }) {
             gap: '36px'
           }} className="how-it-works-cards-box">
             
-            {/* ITEM 1: SEARCH IDENTIFIER (SHIELD OUTLINE WITH CHECKMARK) */}
+            {/* ITEM 1: CHOOSE SEARCH IDENTIFIER */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              gap: '24px'
+              gap: '20px'
             }}>
               {/* Shield Icon SVG */}
               <div style={{ width: '64px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  {/* Shield outline */}
                   <path d="M32 6 L52 14 C52 38 32 56 32 56 C32 56 12 38 12 14 Z" stroke="#ffffff" strokeWidth="2.2" />
-                  {/* Inner Checkmark */}
                   <path d="M24 30 L30 36 L42 22" stroke="#ffffff" strokeWidth="2.5" />
                 </svg>
               </div>
 
-              <p style={{
-                fontSize: '1.02rem',
-                fontWeight: '600',
-                color: '#ffffff',
-                lineHeight: 1.45,
-                margin: 0,
-                maxWidth: '190px'
-              }}>
-                Choose search identifier & query
-              </p>
+              <div>
+                <h3 style={{
+                  fontSize: '1.18rem',
+                  fontWeight: '800',
+                  color: '#ffffff',
+                  marginBottom: '6px',
+                  letterSpacing: '-0.01em'
+                }}>
+                  Choose Search Identifier
+                </h3>
+                <p style={{
+                  fontSize: '0.92rem',
+                  color: '#94a3b8',
+                  lineHeight: '1.5',
+                  margin: 0
+                }}>
+                  Enter a brand name, company owner, class, or application serial number.
+                </p>
+              </div>
             </div>
 
-            {/* ITEM 2: SMART MATCHING ENGINE (HEXAGON OUTLINE WITH INNER BADGE) */}
+            {/* ITEM 2: APPLY SMART MATCHING */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              gap: '24px'
+              gap: '20px'
             }}>
               {/* Hexagon Icon SVG */}
               <div style={{ width: '64px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
-                  {/* Hexagon outline */}
                   <polygon points="32,6 54,18 54,46 32,58 10,46 10,18" stroke="#ffffff" strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                  {/* Inner Text */}
                   <text x="32" y="36" textAnchor="middle" fill="#ffffff" fontSize="11" fontWeight="800" letterSpacing="0.05em" fontFamily="system-ui, sans-serif">
                     MATCH
                   </text>
                 </svg>
               </div>
 
-              <p style={{
-                fontSize: '1.02rem',
-                fontWeight: '600',
-                color: '#ffffff',
-                lineHeight: 1.45,
-                margin: 0,
-                maxWidth: '190px'
-              }}>
-                Smart multi-engine trademark lookup
-              </p>
+              <div>
+                <h3 style={{
+                  fontSize: '1.18rem',
+                  fontWeight: '800',
+                  color: '#ffffff',
+                  marginBottom: '6px',
+                  letterSpacing: '-0.01em'
+                }}>
+                  Apply Smart Matching
+                </h3>
+                <p style={{
+                  fontSize: '0.92rem',
+                  color: '#94a3b8',
+                  lineHeight: '1.5',
+                  margin: 0
+                }}>
+                  Search using Exact, Starts With, or Contains across 20L+ structured records.
+                </p>
+              </div>
             </div>
 
-            {/* ITEM 3: VERIFIED RECORDS (OVERLAPPING SHIELD & GLOBE OUTLINE) */}
+            {/* ITEM 3: REVIEW FULL RECORD DETAILS */}
             <div style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              gap: '24px'
+              gap: '20px'
             }}>
               {/* Overlapping Shield & Globe Icon SVG */}
               <div style={{ width: '92px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <svg width="88" height="56" viewBox="0 0 88 56" fill="none">
-                  {/* Left Shield with TM */}
                   <path d="M22 6 L38 12 C38 34 22 48 22 48 C22 48 6 34 6 12 Z" stroke="#ffffff" strokeWidth="2" fill="#121418" />
                   <text x="22" y="30" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="800" fontFamily="system-ui, sans-serif">
                     TM
                   </text>
-                  
-                  {/* Right Globe with Coordinates */}
                   <circle cx="58" cy="28" r="22" stroke="#ffffff" strokeWidth="2" fill="none" />
                   <ellipse cx="58" cy="28" rx="10" ry="22" stroke="#ffffff" strokeWidth="1.6" fill="none" />
                   <line x1="36" y1="28" x2="80" y2="28" stroke="#ffffff" strokeWidth="1.6" />
@@ -184,16 +195,25 @@ export default function HowItWorksSection({ setActiveTab }) {
                 </svg>
               </div>
 
-              <p style={{
-                fontSize: '1.02rem',
-                fontWeight: '600',
-                color: '#ffffff',
-                lineHeight: 1.45,
-                margin: 0,
-                maxWidth: '210px'
-              }}>
-                Instant legal status & structured data
-              </p>
+              <div>
+                <h3 style={{
+                  fontSize: '1.18rem',
+                  fontWeight: '800',
+                  color: '#ffffff',
+                  marginBottom: '6px',
+                  letterSpacing: '-0.01em'
+                }}>
+                  Review Full Record Details
+                </h3>
+                <p style={{
+                  fontSize: '0.92rem',
+                  color: '#94a3b8',
+                  lineHeight: '1.5',
+                  margin: 0
+                }}>
+                  Inspect legal status, ownership history, Nice classes, and official filing dates.
+                </p>
+              </div>
             </div>
 
           </div>

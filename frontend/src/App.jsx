@@ -5,7 +5,6 @@ import SearchTypesSection from './components/SearchTypesSection';
 import TrademarkInfoSection from './components/TrademarkInfoSection';
 import HowItWorksSection from './components/HowItWorksSection';
 import SearchFeaturesSection from './components/SearchFeaturesSection';
-import FilteringSortingSection from './components/FilteringSortingSection';
 import DatasetSection from './components/DatasetSection';
 import UseCasesSection from './components/UseCasesSection';
 import WhyWytSection from './components/WhyWytSection';
@@ -52,41 +51,33 @@ export default function App() {
       <main style={{ flex: 1 }}>
         
         {/* =========================================================================
-            LANDING PAGE (17 User-Side Sections)
+            LANDING PAGE
            ========================================================================= */}
         {activeTab === 'landing' && (
           <>
-            {/* Section 4: Hero Section with Large Search Component */}
+            {/* Hero Section with Large Search Component */}
             <HeroSection onExecuteSearch={handleExecuteSearch} onNavigateTab={setActiveTab} />
 
-            {/* Section 5: What Can You Search? (4 Cards) */}
+            {/* What Can You Search? (4 Cards) */}
             <SearchTypesSection onExecuteSearch={handleExecuteSearch} />
 
-            {/* Section 6: Everything You Need to Know (8 Info Cards) */}
+            {/* Everything You Need to Know (Bento Grid) */}
             <TrademarkInfoSection />
 
-            {/* Section 7: How Wyt Works (3 Step Journey) */}
+            {/* How Wyt Works (3 Step Split Layout) */}
             <HowItWorksSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
 
-            {/* Section 8: Search Features (Exact, Starts With, Contains) */}
+            {/* Search Features (Exact, Starts With, Contains) */}
             <SearchFeaturesSection onExecuteSearch={handleExecuteSearch} />
 
-            {/* Sections 9 & 10: Filtering & Sorting Showcase */}
-            <FilteringSortingSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
-
-            {/* Section 11: Explore Millions of Trademark Records */}
+            {/* Explore Millions of Trademark Records */}
             <DatasetSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
 
-
-            {/* Section 13: Built for Trademark Research (Use Cases) */}
+            {/* Built for Trademark Research (Use Cases) */}
             <UseCasesSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
 
-            {/* Section 14: Trademark Information, All in One Place (Why Choose Wyt) */}
+            {/* Trademark Information, All in One Place (Why Choose Wyt) */}
             <WhyWytSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
-
-            {/* Section 15: Need Help Finding Trademark Information? (Documentation) */}
-            
-
           </>
         )}
 
@@ -95,7 +86,6 @@ export default function App() {
           <div style={{ padding: '40px 0' }}>
             <HowItWorksSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
             <SearchFeaturesSection onExecuteSearch={handleExecuteSearch} />
-            <FilteringSortingSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
             <FinalCTA
               onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })}
               onOpenAuthModal={handleOpenAuthModal}

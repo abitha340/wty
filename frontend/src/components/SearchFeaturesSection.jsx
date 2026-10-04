@@ -69,8 +69,8 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
 
   return (
     <section style={{
-      paddingTop: '88px',
-      paddingBottom: '96px',
+      paddingTop: '96px',
+      paddingBottom: '108px',
       background: '#ca8643',
       color: '#ffffff',
       position: 'relative',
@@ -81,35 +81,35 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
       {/* Subtle Warm Amber Highlights */}
       <div style={{
         position: 'absolute',
-        top: '-100px',
-        right: '10%',
-        width: '600px',
-        height: '350px',
-        background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%)',
-        filter: 'blur(70px)',
+        top: '-120px',
+        right: '15%',
+        width: '800px',
+        height: '450px',
+        background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.16) 0%, transparent 70%)',
+        filter: 'blur(80px)',
         pointerEvents: 'none',
         zIndex: 0
       }} />
 
       <div className="container" style={{
         width: '100%',
-        maxWidth: '1440px',
+        maxWidth: '1680px',
         margin: '0 auto',
-        padding: '0 clamp(20px, 4vw, 48px)',
+        padding: '0 clamp(24px, 4.5vw, 64px)',
         position: 'relative',
         zIndex: 1
       }}>
         
         {/* =========================================================================
-            TOP HEADER (MATCHING REFERENCE TWO-LINE BOLD TITLE)
+            TOP HEADER (EXPANDED TO FULL SCREEN)
            ========================================================================= */}
-        <div style={{ marginBottom: '44px' }}>
+        <div style={{ marginBottom: '48px' }}>
           <h2 style={{
-            fontSize: 'clamp(2.5rem, 4.4vw, 4rem)',
+            fontSize: 'clamp(2.6rem, 4.6vw, 4.4rem)',
             fontWeight: '900',
             letterSpacing: '-0.04em',
             color: '#ffffff',
-            lineHeight: 1.12,
+            lineHeight: 1.1,
             margin: 0
           }}>
             Search the Way You Need.<br />
@@ -118,18 +118,18 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
         </div>
 
         {/* =========================================================================
-            HORIZONTAL PILL SWITCHER (BACKGROUND #ca8643, WHEN CLICKED BECOMES BLACK)
+            HORIZONTAL PILL SWITCHER (BACKGROUND #ca8643, ACTIVE STATE IS BLACK)
            ========================================================================= */}
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '10px',
-          padding: '8px',
+          gap: '12px',
+          padding: '10px 12px',
           borderRadius: '9999px',
           background: 'rgba(0, 0, 0, 0.16)',
-          backdropFilter: 'blur(10px)',
+          backdropFilter: 'blur(12px)',
           border: '1px solid rgba(255, 255, 255, 0.22)',
-          marginBottom: '52px',
+          marginBottom: '56px',
           flexWrap: 'wrap'
         }} className="search-mode-pill-bar">
           {modes.map((mode) => {
@@ -144,20 +144,20 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
                   display: 'flex',
                   alignItems: 'center',
                   gap: '10px',
-                  padding: '12px 26px',
+                  padding: '14px 30px',
                   borderRadius: '9999px',
-                  border: isActive ? '1px solid rgba(255, 255, 255, 0.18)' : '1px solid transparent',
+                  border: isActive ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid transparent',
                   background: isActive ? '#000000' : 'transparent',
                   color: '#ffffff',
-                  fontSize: '1rem',
+                  fontSize: '1.04rem',
                   fontWeight: isActive ? '800' : '600',
                   cursor: 'pointer',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                  boxShadow: isActive ? '0 6px 20px rgba(0, 0, 0, 0.35)' : 'none'
+                  boxShadow: isActive ? '0 8px 24px rgba(0, 0, 0, 0.4)' : 'none'
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.1)';
+                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.12)';
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -166,7 +166,7 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
                   }
                 }}
               >
-                <IconComponent size={18} strokeWidth={isActive ? 2.5 : 2} color="#ffffff" />
+                <IconComponent size={20} strokeWidth={isActive ? 2.5 : 2} color="#ffffff" />
                 <span>{mode.label}</span>
               </button>
             );
@@ -174,12 +174,12 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
         </div>
 
         {/* =========================================================================
-            2-COLUMN CONTENT SECTION: LEFT = INFO & CTA | RIGHT = SOFTWARE UI WINDOW
+            2-COLUMN CONTENT SECTION: EXPANDED FULL SCREEN RATIO
            ========================================================================= */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 420px) minmax(500px, 1fr)',
-          gap: '48px',
+          gridTemplateColumns: 'minmax(340px, 460px) minmax(500px, 1fr)',
+          gap: '56px',
           alignItems: 'center'
         }} className="search-mode-content-grid">
           
@@ -188,21 +188,21 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
              ======================================================================= */}
           <div>
             <h3 style={{
-              fontSize: 'clamp(1.8rem, 2.8vw, 2.4rem)',
+              fontSize: 'clamp(2rem, 3vw, 2.7rem)',
               fontWeight: '900',
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.035em',
               color: '#ffffff',
-              lineHeight: 1.18,
-              marginBottom: '18px'
+              lineHeight: 1.15,
+              marginBottom: '20px'
             }}>
               {currentMode.headline}
             </h3>
 
             <p style={{
-              fontSize: '1.05rem',
-              color: 'rgba(255, 255, 255, 0.92)',
-              lineHeight: 1.65,
-              marginBottom: '32px'
+              fontSize: '1.1rem',
+              color: 'rgba(255, 255, 255, 0.94)',
+              lineHeight: 1.7,
+              marginBottom: '36px'
             }}>
               {currentMode.desc}
             </p>
@@ -211,7 +211,7 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
             <div style={{
               display: 'flex',
               gap: '16px',
-              marginBottom: '36px',
+              marginBottom: '40px',
               flexWrap: 'wrap'
             }}>
               {currentMode.badges.map((b, idx) => {
@@ -223,16 +223,16 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '10px',
-                      padding: '10px 18px',
-                      borderRadius: '14px',
+                      padding: '12px 20px',
+                      borderRadius: '16px',
                       background: 'rgba(0, 0, 0, 0.22)',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
-                      fontSize: '0.9rem',
+                      fontSize: '0.94rem',
                       fontWeight: '700',
                       color: '#ffffff'
                     }}
                   >
-                    <BadgeIcon size={18} color="#ffffff" />
+                    <BadgeIcon size={19} color="#ffffff" />
                     <span>{b.label}</span>
                   </div>
                 );
@@ -245,36 +245,36 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '10px',
-                padding: '15px 32px',
-                borderRadius: '14px',
+                gap: '12px',
+                padding: '16px 36px',
+                borderRadius: '16px',
                 background: '#000000',
                 color: '#ffffff',
-                fontSize: '1.02rem',
+                fontSize: '1.05rem',
                 fontWeight: '800',
                 border: '1px solid rgba(255, 255, 255, 0.25)',
                 cursor: 'pointer',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
+                boxShadow: '0 10px 28px rgba(0, 0, 0, 0.4)',
                 transition: 'all 0.25s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.5)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 0, 0, 0.55)';
                 e.currentTarget.style.background = '#111317';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.35)';
+                e.currentTarget.style.boxShadow = '0 10px 28px rgba(0, 0, 0, 0.4)';
                 e.currentTarget.style.background = '#000000';
               }}
             >
               <span>{currentMode.btnText}</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={20} />
             </button>
           </div>
 
           {/* =======================================================================
-              RIGHT COLUMN: LARGE SOFTWARE UI WINDOW MOCKUP (ACTIVE ASSET)
+              RIGHT COLUMN: EXPANDED FULL-WIDTH APPLICATION WINDOW MOCKUP
              ======================================================================= */}
           <div style={{
             position: 'relative',
@@ -285,10 +285,10 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
           }}>
             <div style={{
               width: '100%',
-              borderRadius: '20px',
+              borderRadius: '24px',
               overflow: 'hidden',
-              boxShadow: '0 24px 60px rgba(0, 0, 0, 0.55)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              boxShadow: '0 28px 70px rgba(0, 0, 0, 0.6)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
               background: '#0f1115',
               transition: 'transform 0.4s ease'
             }}>
@@ -326,7 +326,7 @@ export default function SearchFeaturesSection({ onExecuteSearch, setActiveTab })
         @media (max-width: 1024px) {
           .search-mode-content-grid {
             grid-template-columns: 1fr !important;
-            gap: 36px !important;
+            gap: 40px !important;
           }
         }
       `}</style>

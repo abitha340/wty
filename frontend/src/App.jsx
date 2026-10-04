@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import SearchTypesSection from './components/SearchTypesSection';
@@ -37,6 +37,27 @@ export default function App() {
     setAuthModalOpen(true);
   };
 
+  // Global Down-to-Up Scroll Reveal Intersection Observer
+  useEffect(() => {
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('motion-visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    const elements = document.querySelectorAll('.motion-reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [activeTab]);
+
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-page)' }}>
       
@@ -51,60 +72,86 @@ export default function App() {
       <main style={{ flex: 1 }}>
         
         {/* =========================================================================
-            LANDING PAGE
+            LANDING PAGE (Every field comes down-to-up with smooth motion)
            ========================================================================= */}
         {activeTab === 'landing' && (
           <>
-            {/* Hero Section with Large Search Component */}
-            <HeroSection onExecuteSearch={handleExecuteSearch} onNavigateTab={setActiveTab} />
+            {/* Field 1: Hero Section */}
+            <div className="motion-reveal motion-visible animate-fade-up">
+              <HeroSection onExecuteSearch={handleExecuteSearch} onNavigateTab={setActiveTab} />
+            </div>
 
-            {/* What Can You Search? (4 Cards) */}
-            <SearchTypesSection onExecuteSearch={handleExecuteSearch} />
+            {/* Field 2: What Can You Search? */}
+            <div className="motion-reveal">
+              <SearchTypesSection onExecuteSearch={handleExecuteSearch} />
+            </div>
 
-            {/* Everything You Need to Know (Bento Grid) */}
-            <TrademarkInfoSection />
+            {/* Field 3: Everything You Need to Know (Bento Grid) */}
+            <div className="motion-reveal">
+              <TrademarkInfoSection />
+            </div>
 
-            {/* How Wyt Works (3 Step Split Layout) */}
-            <HowItWorksSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
+            {/* Field 4: How Wyt Works (3 Step Split Layout) */}
+            <div className="motion-reveal">
+              <HowItWorksSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
+            </div>
 
-            {/* Search Features (Exact, Starts With, Contains) */}
-            <SearchFeaturesSection onExecuteSearch={handleExecuteSearch} />
+            {/* Field 5: Search Features (Exact, Starts With, Contains) */}
+            <div className="motion-reveal">
+              <SearchFeaturesSection onExecuteSearch={handleExecuteSearch} />
+            </div>
 
-            {/* Explore Millions of Trademark Records */}
-            <DatasetSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+            {/* Field 6: Explore Millions of Trademark Records */}
+            <div className="motion-reveal">
+              <DatasetSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+            </div>
 
-            {/* Built for Trademark Research (Use Cases) */}
-            <UseCasesSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+            {/* Field 7: Built for Trademark Research (Scrollytelling) */}
+            <div className="motion-reveal">
+              <UseCasesSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+            </div>
 
-            {/* Trademark Information, All in One Place (Why Choose Wyt) */}
-            <WhyWytSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+            {/* Field 8: Trademark Information, All in One Place */}
+            <div className="motion-reveal">
+              <WhyWytSection onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+            </div>
           </>
         )}
 
-        {/* How It Works Tab (Deep View) */}
+        {/* How It Works Tab (Deep View with Down-to-Up Motion) */}
         {activeTab === 'how-it-works' && (
           <div style={{ padding: '40px 0' }}>
-            <HowItWorksSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
-            <SearchFeaturesSection onExecuteSearch={handleExecuteSearch} />
-            <FinalCTA
-              onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })}
-              onOpenAuthModal={handleOpenAuthModal}
-            />
+            <div className="motion-reveal motion-visible animate-fade-up">
+              <HowItWorksSection onNavigateSearch={() => handleExecuteSearch({ query: 'NIKE', searchType: 'trademark', searchMode: 'contains' })} />
+            </div>
+            <div className="motion-reveal">
+              <SearchFeaturesSection onExecuteSearch={handleExecuteSearch} />
+            </div>
+            <div className="motion-reveal">
+              <FinalCTA
+                onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })}
+                onOpenAuthModal={handleOpenAuthModal}
+              />
+            </div>
           </div>
         )}
 
         {/* Search Explorer Page */}
         {activeTab === 'search' && (
-          <SearchExplorer
-            initialQuery={searchParams.query}
-            initialMode={searchParams.searchMode}
-            initialType={searchParams.searchType}
-          />
+          <div className="motion-reveal motion-visible animate-fade-up">
+            <SearchExplorer
+              initialQuery={searchParams.query}
+              initialMode={searchParams.searchMode}
+              initialType={searchParams.searchType}
+            />
+          </div>
         )}
 
         {/* User Documentation Page */}
         {activeTab === 'docs' && (
-          <UserDocs onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+          <div className="motion-reveal motion-visible animate-fade-up">
+            <UserDocs onNavigateSearch={() => handleExecuteSearch({ query: '', searchType: 'trademark', searchMode: 'contains' })} />
+          </div>
         )}
 
       </main>
@@ -116,8 +163,10 @@ export default function App() {
         initialMode={authModalMode}
       />
 
-      {/* User Footer */}
-      <Footer setActiveTab={setActiveTab} onOpenAuthModal={handleOpenAuthModal} />
+      {/* User Footer with Motion */}
+      <div className="motion-reveal">
+        <Footer setActiveTab={setActiveTab} onOpenAuthModal={handleOpenAuthModal} />
+      </div>
 
     </div>
   );

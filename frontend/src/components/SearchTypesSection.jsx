@@ -65,7 +65,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
       overflow: 'hidden',
       paddingTop: '100px',
       paddingBottom: '130px',
-      background: 'rgb(250, 184, 38)',
+      background: 'linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%)',
       width: '100%',
       borderBottom: '1px solid rgba(0, 0, 0, 0.08)'
     }}>
@@ -120,7 +120,7 @@ export default function SearchTypesSection({ onExecuteSearch }) {
             <div
               key={card.id}
               style={{
-                background: 'rgb(250, 184, 38)',
+                background: 'linear-gradient(180deg, #ffffff 0%, #f7fbfe 100%)',
                 borderRadius: '26px',
                 border: '1px solid #e2e8f0',
                 boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05)',
